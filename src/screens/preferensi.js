@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, Pressable, View, SafeAreaView } from 'react-native';
 import React from 'react';
+import { StyleSheet, Text, Pressable, View, SafeAreaView } from 'react-native';
+import { Switch} from 'react-native-paper' ;
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import SafeViewAndroid from '../../components/SafeViewAndroid';
@@ -14,6 +15,10 @@ const Preferensi = () => {
         </View>
         <View style={styles.contentBox}>
             <Text style={styles.contentText}>Hidupkan Pengingat</Text>
+            <View style={styles.toggleButton}>
+                <Switch/>
+            </View>
+            
             <Text style={styles.contentText}>Setel Pengingat</Text>
             <Pressable style={styles.contentButtonOK}>
                 <Text style={styles.buttonText}>OK</Text>
@@ -50,12 +55,13 @@ const styles = StyleSheet.create({
 
         paddingTop: 79,
         paddingLeft: 24,
+        paddingRight: 20,
     },
     contentText: {
         color: "#404040",
         fontSize: 24,
         fontWeight: "700",
-        lineHeight: 29,
+        lineHeight: 39,
         textTransform: "capitalize",
 
         marginBottom: 22,
@@ -88,5 +94,8 @@ const styles = StyleSheet.create({
         marginTop: -46,
         marginLeft: 100,
         paddingTop: 8,
+    },
+    toggleButton: {
+        marginTop: -63,
     }
 })
