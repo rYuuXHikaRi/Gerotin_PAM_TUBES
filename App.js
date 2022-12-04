@@ -1,13 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
+//Local components
 import Home from './src/screens/Home';
 import Preferensi from './src/screens/Preferensi';
 import Profile from './src/screens/Profile';
 import Gerakan from './src/screens/Gerakan';
+import Article from './src/screens/Article';
+import History from './src/screens/History';
+import ArticleContent from './src/screens/Artikel_Content';
 
 const Stack = createStackNavigator();
 
@@ -21,8 +23,33 @@ export default function App() {
           options={{ headerShown: false }}
         />
         <Stack.Screen
+          name="Riwayat"
+          component={History}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Artikel"
+          component={Article}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="KontenArtikel"
+          component={ArticleContent}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
           name="Preferensi"
           component={Preferensi}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Profile"
+          component={Profile}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Gerakan"
+          component={Gerakan}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

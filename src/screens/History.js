@@ -1,15 +1,15 @@
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View,Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView, ScrollView} from 'react-native';
-import LinearGradient from 'react-native-linear-gradient'
 
 export default function History() {
   var barView=[];
   for (let i = 0; i < 8; i++) {
     var view =
     <View style={styles.historybox}>
-      <Image source={require('./assets/dada.jpg')}  style={{ width: 100, height: 80,margin:10,marginRight:40 }}/>
+      <Image source={require('../../assets/dada.jpg')}  style={{ width: 100, height: 80,margin:10,marginRight:40 }}/>
       <View style={styles.textbarcontainer}>
         <Text style={styles.textbar}>Otot Dada</Text>
         <Text style={styles.textbar}>17 September 2022</Text>

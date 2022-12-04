@@ -1,15 +1,15 @@
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View,Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView, ScrollView} from 'react-native';
-import LinearGradient from 'react-native-linear-gradient'
 
 export default function Article() {
   var barView=[];
   for (let i = 0; i < 8; i++) {
     var view =
     <View style={styles.historybox}>
-      <Image source={require('./assets/artikel.jpg')}  style={{ width: 100, height: 100,margin:10,marginRight:40,justifyContent:'center' }}/>
+      <Image source={require('../../assets/artikel.jpg')}  style={{ width: 100, height: 100,margin:10,marginRight:40,justifyContent:'center' }}/>
       <View style={styles.textbarcontainer}>
         <Text style={styles.textbar}>Pentingnya Berolahraga Saat Malam Hari</Text>
       </View>
@@ -22,7 +22,7 @@ export default function Article() {
    
     <View style={styles.container}>
       <View style={styles.header}>
-      <Image source={require('./assets/logo2.jpg')}  style={{ width: 400, height: 150,position:'absolute' }}/>
+      <Image source={require('../../assets/logo2.jpg')}  style={{ width: 400, height: 150,position:'absolute' }}/>
         <Ionicons name="arrow-back-circle" size={35} color="white" />
         <View style={styles.textbox}>
           <Text>Artikel</Text>
