@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Gerotin",
-    "slug": "Gerotin",
+    "name": "CountdownRest",
+    "slug": "CountdownRest",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
