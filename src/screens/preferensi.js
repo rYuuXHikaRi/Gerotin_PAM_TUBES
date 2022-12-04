@@ -6,13 +6,13 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import SafeViewAndroid from '../../components/SafeViewAndroid';
 
-const Preferensi = () => {
+const Preferensi = ({navigation}) => {
   return (
     <SafeAreaView style={SafeViewAndroid.AndroidSafeArea}>
-        <View style={styles.title}>
+        <Pressable style={styles.title} onPress={() => navigation.navigate("Home")}>
             <Icon name="arrow-back-circle" size={40} style={{color: "#FF5151", marginLeft: 24, marginTop: 24,}}/>
             <Text style={styles.textTitle}>Preferensi</Text>
-        </View>
+        </Pressable>
         <View style={styles.contentBox}>
             <Text style={styles.contentText}>Hidupkan Pengingat</Text>
             <View style={styles.toggleButton}>
@@ -20,10 +20,10 @@ const Preferensi = () => {
             </View>
             
             <Text style={styles.contentText}>Setel Pengingat</Text>
-            <Pressable style={styles.contentButtonOK}>
+            <Pressable style={styles.contentButtonOK} onPress={() => navigation.navigate("Home")}>
                 <Text style={styles.buttonText}>OK</Text>
             </Pressable>
-            <Pressable style={styles.contentButtonNotOK}>
+            <Pressable style={styles.contentButtonNotOK} onPress={() => navigation.navigate("Home")}>
                 <Text style={styles.buttonText}>Batal</Text>
             </Pressable>
         </View>
