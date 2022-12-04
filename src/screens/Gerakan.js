@@ -1,4 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
+import React from 'react';
 import { StyleSheet, Text, View,Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView, ScrollView} from 'react-native';
@@ -8,8 +9,8 @@ export default function Gerakan() {
   for (let i = 0; i < 8; i++) {
     var view =
     <View style={styles.barBox}>
-    <Image source={require('./assets/pushup.gif')}  style={{ width: 100, height: 80,margin:10,marginRight:40 }}/>
-     <Text style={{padding:30,color:'white'}}>Push Up 10x</Text>
+    <Image source={require('../../assets/pushup.gif')}  style={{ width: 100, height: 80,margin:10,marginRight:40 }}/>
+     <Text style={{padding:30,color:'#FF5151'}}>Push Up 10x</Text>
    </View>
     barView.push(view);
     
@@ -19,7 +20,7 @@ export default function Gerakan() {
    
     <View style={styles.container}>
       <View style={styles.header}>
-        <Image source={require('./assets/man.jpg')}  style={{ width: 400, height: 150,position:'absolute' }}/>
+        <Image source={require('../../assets/man.jpg')}  style={{ width: 400, height: 150,position:'absolute' }}/>
         <Ionicons name="arrow-back-circle" size={35} color="white" />
       </View>
       <View style={styles.textBox}>

@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView, ScrollView} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient'
 
-export default function Artikel() {
+export default function Article() {
   var barView=[];
   for (let i = 0; i < 8; i++) {
     var view =

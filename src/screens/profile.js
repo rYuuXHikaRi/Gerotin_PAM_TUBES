@@ -5,7 +5,7 @@ import { Entypo } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { SafeAreaView, ScrollView} from 'react-native';
 
-const Profile = () => {
+export default function Profile(){
   return (
 
     <View style={styles.container}>
@@ -72,7 +72,6 @@ const Profile = () => {
   );
 }
 
-export default Profile
 
 const styles = StyleSheet.create({
   container: {
