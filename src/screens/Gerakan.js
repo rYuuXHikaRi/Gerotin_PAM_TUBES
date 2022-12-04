@@ -10,7 +10,7 @@ export default function Gerakan() {
     var view =
     <View style={styles.barBox}>
     <Image source={require('../../assets/pushup.gif')}  style={{ width: 100, height: 80,margin:10,marginRight:40 }}/>
-     <Text style={{padding:30,color:'#FF5151'}}>Push Up 10x</Text>
+     <Text style={{color:'white',fontSize:20}}>Push Up 10x</Text>
    </View>
     barView.push(view);
     
@@ -64,7 +64,8 @@ const styles = StyleSheet.create({
     backgroundColor:'black',
     position: 'relative',
     borderRadius:20,
-    justifyContent:'center'
+    justifyContent:'center',
+    alignItems:'center'
   },
   barContainer:{
     backgroundColor:'#FF5151',
