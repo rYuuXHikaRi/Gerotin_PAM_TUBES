@@ -4,7 +4,7 @@ import { StyleSheet, Text, View,Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView, ScrollView} from 'react-native';
 
-export default function Article() {
+const Article = ({navigation}) => {
   var barView=[];
   for (let i = 0; i < 8; i++) {
     var view =
@@ -37,7 +37,7 @@ export default function Article() {
     </View>
   );
 }
-
+export default Article;
 
 const styles = StyleSheet.create({
   container: {

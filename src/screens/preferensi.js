@@ -13,6 +13,7 @@ const Preferensi = ({navigation}) => {
             <Icon name="arrow-back-circle" size={40} style={{color: "#FF5151", marginLeft: 24, marginTop: 24,}}/>
             <Text style={styles.textTitle}>Preferensi</Text>
         </Pressable>
+        
         <View style={styles.contentBox}>
             <Text style={styles.contentText}>Hidupkan Pengingat</Text>
             <View style={styles.toggleButton}>
@@ -41,7 +42,6 @@ const styles = StyleSheet.create({
     textTitle: {
         color: "#FF5151",
         marginTop: -31,
-
         fontSize: 16,
         fontWeight: "700",
         textAlign: "center",
