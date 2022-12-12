@@ -22,6 +22,14 @@
     },
     "web": {
       "favicon": "assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "eb9e59e7-8fc2-4506-8a7a-d0ed0600c3db"
+      }
+    },
+    "android": {
+      "package": "com.AkJgMw.GEROtin"
     }
   }
 }
