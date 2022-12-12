@@ -1,8 +1,11 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View,Image } from 'react-native';
+import { StyleSheet, Text, View,Image, Pressable, ImageBackground } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView, ScrollView} from 'react-native';
+
+// Local components
+import SafeViewAndroid from '../../components/SafeViewAndroid';
 
 const Article = ({navigation}) => {
   var barView=[];
@@ -19,22 +22,34 @@ const Article = ({navigation}) => {
   }
   return (
 
-   
-    <View style={styles.container}>
-      <View style={styles.header}>
-      <Image source={require('../../assets/logo2.jpg')}  style={{ width: 400, height: 150,position:'absolute' }}/>
-        <Ionicons name="arrow-back-circle" size={35} color="white" />
-        <View style={styles.textbox}>
-          <Text>Artikel</Text>
-        </View>
+    <SafeAreaView style={SafeViewAndroid.AndroidSafeArea}>
+      <View style={styles.container}>
+        <ImageBackground source={require('../../assets/logo2.jpg') } resizeMode="cover" style={{width: '100%', height: '100%',}}>
+          <View style={styles.header}>
+              <View>
+                <Pressable onPress={() => navigation.navigate("Home")}>
+                  <Ionicons name="arrow-back-circle" size={40} color="#FF5151" />
+                </Pressable>
+              </View>
+              <Text style={styles.textTitle}>Artikel</Text>
+          </View>
         
+        
+      { /*
+        <View style={styles.coverContainer}>
+          <Text>test</Text>
+          <Image source={require('../../assets/logo2.jpg')}  style={styles.imgCover}/>
+  </View> */ }
+        
+          <View style={styles.historycontainer}>
+            <ScrollView>
+              {barView}
+            </ScrollView>  
+          </View>
+          <StatusBar style="auto" />
+        </ImageBackground>
       </View>
-
-      <ScrollView style={styles.historycontainer}>  
-          {barView}
-      </ScrollView>
-      <StatusBar style="auto" />
-    </View>
+    </SafeAreaView>
   );
 }
 export default Article;
@@ -42,50 +57,61 @@ export default Article;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'black',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#404040",
   },
-
   header :{
-    height:180,
-    width : '100%',
-    top:20,
-    textAlign: 'center',
-    backgroundColor : 'black',
-    display:'flex',
-    flexDirection:'row'
-  },
+    backgroundColor: "black",
+    flexDirection: "row",
+    alignContent: "center",
+    justifyContent: "flex-start",
 
+    width: '100%',
+    height: 86,
+    paddingTop: 24,
+    paddingLeft: 24,
+    borderBottomLeftRadius: 25,
+    borderBottomRightRadius: 25,
+  },
+  textTitle: {
+    color: "#FF5151",
+    marginTop: 12,
+    marginLeft: 113,
+    fontSize: 16,
+    fontWeight: "700",
+    textAlign: "center",
+  },
+  coverContainer : {
+    backgroundColor: "white",
+    marginTop: -5,
+  },
+  imgCover: {
+    
+    width: '100%',
+    height: 240,
+
+  },
   historybox:{
-    color:["purple","white"],
-    height: 150,
-    width:'80%',
+    height: 135,
     display:'flex',
     flexDirection:'row',
     marginTop:20,
-    marginLeft:40,
     backgroundColor:'black',
     position: 'relative',
-    borderRadius:20,
+    borderRadius: 25,
     alignItems:'center'
   },
   historycontainer:{
-    backgroundColor:'red',
-    borderRadius:20,
+    backgroundColor:'#FF5151',
+    borderTopLeftRadius:50,
+    borderTopRightRadius:50,
     width:'100%',
+
+    marginTop: 156,
+    paddingTop: 55,
+    paddingLeft: 24,
+    paddingRight: 24,
   },
-  textbox:{
-    backgroundColor:'red',
-    color:'black',
-    fontWeight:'bold',
-    height:25,
-    margin:20,
-    paddingRight:20,
-    paddingLeft:20,
-    borderRadius:10,
-    marginLeft:100
-  },
+
   textbar:{
     color:'white',
     
