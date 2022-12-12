@@ -1,15 +1,18 @@
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View,Image,TextInput, Pressable } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Icon1 from 'react-native-vector-icons/Ionicons';
 import { Entypo } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { SafeAreaView, ScrollView} from 'react-native';
 
-export default function Profile(){
+const Profile = ({navigation}) => {
   return (
 
     <View style={styles.container}>
-        <Ionicons name="arrow-back-circle" size={40} color="#FF5151" style={{position:'absolute',paddingTop:35,paddingLeft:20}}/>
+      <Pressable onPress={() => navigation.navigate("Home")}>
+        <Icon1 name="arrow-back-circle" size={40} color="#FF5151" style={{position:'absolute',paddingTop:35,paddingLeft:20}}/>
+      </Pressable>
       <View style={styles.topContainer}>
         <Text style={styles.textTitle}>Profil Pengguna</Text>
 
@@ -23,7 +26,7 @@ export default function Profile(){
         <View style={styles.profileContainer}>
             
             <View style={styles.dataContainer}>
-                <Ionicons name="person" size={35} color="black" style={{marginTop:9}} />
+                <Icon1 name="person" size={35} color="black" style={{marginTop:9}} />
                 <View style={styles.labelContainer}>
                     <Text style={styles.label}>Nama</Text>
                     <View style={styles.textarea}></View>
@@ -56,10 +59,10 @@ export default function Profile(){
                     <TextInput  editable  maxLength={40} style={styles.textInput} placeholder='  Konfirmasi Password Baru'/>
                 </View>
                 <View style={styles.optionButton}>
-                    <Pressable style={styles.okButton}>
+                    <Pressable style={styles.okButton} onPress={() => navigation.navigate("Home")}>
                         <Text style={styles.okText}>Ok</Text>
                     </Pressable>
-                    <Pressable style={styles.cancelButton}>
+                    <Pressable style={styles.cancelButton} onPress={() => navigation.navigate("Home")}>
                         <Text style={styles.cancelText}>Batal</Text>
                     </Pressable>
                 </View>
@@ -72,6 +75,7 @@ export default function Profile(){
   );
 }
 
+export default Profile
 
 const styles = StyleSheet.create({
   container: {
