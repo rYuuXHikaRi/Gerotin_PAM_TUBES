@@ -7,6 +7,7 @@ import Home from './src/screens/Home';
 import Preferensi from './src/screens/Preferensi';
 import Profile from './src/screens/Profile';
 import Gerakan from './src/screens/Gerakan';
+import Countdown from './src/screens/Countdown';
 import Article from './src/screens/Article';
 import History from './src/screens/History';
 import ArticleContent from './src/screens/Artikel_Content';
@@ -50,6 +51,11 @@ export default function App() {
         <Stack.Screen
           name="Gerakan"
           component={Gerakan}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Countdown"
+          component={Countdown}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

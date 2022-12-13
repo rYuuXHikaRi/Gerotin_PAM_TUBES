@@ -1,17 +1,36 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View,Image } from 'react-native';
+import { StyleSheet, Text, View,Image, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView, ScrollView} from 'react-native';
 
 const Gerakan = ({navigation}) => {
-  var barView=[];
-  for (let i = 0; i < 8; i++) {
+  var assetsArr=[require('../../assets/WorkOutIMG/PushUp.gif'),
+               require('../../assets/WorkOutIMG/PressUpper_Body.gif'),
+               require('../../assets/WorkOutIMG/Sit-Up_Variations.gif'),
+               require('../../assets/WorkOutIMG/StandingShoulderWithDumbbells.gif'),
+               require('../../assets/WorkOutIMG/SculptedArmsUp.gif'),
+               require('../../assets/WorkOutIMG/Weightlifting_dumbble.gif'),
+               require('../../assets/WorkOutIMG/Weightlifting.gif'),
+               require('../../assets/WorkOutIMG/Sit-Up_Variations_stomatch.gif')
+                ];
+  var gerakanTitle = ['Push Up 12x',
+                      'PressUp dumbbell 10x',
+                      'Russian Twists 10x',
+                      'Hammer press 10x ',
+                      'SculptedArmsUp 10x',
+                      'Tricep kickback 10x',
+                      'Deadlift 5x',
+                      'Flutter Kicks 10x'
+                    ];
+    var barView = [];
+                
+  for (let i = 0; i < assetsArr.length; i++) {
     var view =
     <View style={styles.barBox}>
-    <Image source={require('../../assets/pushup.gif')}  style={{ width: 100, height: 80,margin:10,marginRight:40 }}/>
-     <Text style={{padding:30,color:'#FF5151'}}>Push Up 10x</Text>
-   </View>
+      <Image source={assetsArr[i]}  style={{ width: 100, height: 80,margin:10,marginRight:40 }}/>
+        <Text style={{padding:30,color:'#FF5151'}}>{gerakanTitle[i]}</Text>
+    </View>
     barView.push(view);
     
   }
@@ -24,14 +43,14 @@ const Gerakan = ({navigation}) => {
         <Ionicons name="arrow-back-circle" size={35} color="white" />
       </View>
       <View style={styles.textBox}>
-        <Text>Otot Dada</Text>
+        <Text>Otot Lengan & perut</Text>
       </View>
       <ScrollView style={styles.barContainer}>  
           {barView}
       </ScrollView>
-      <View style={styles.startBar}>
+      <Pressable style={styles.startBar} onPress={() => navigation.navigate("Countdown")}>
         <Text>Start</Text>
-      </View>
+      </Pressable>
       <StatusBar style="auto" />
     </View>
   );

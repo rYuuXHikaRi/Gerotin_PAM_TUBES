@@ -3,53 +3,71 @@ import { SafeAreaView, StyleSheet, Text, View ,Image, Button, Pressable} from "r
 import React from "react";
 import PrevNextIcon from 'react-native-vector-icons/AntDesign';
 import { CountdownCircleTimer } from "react-native-countdown-circle-timer";
+import { CircularProgress } from 'expo-linear-gradient';
+import { useState } from 'react';
 
-export default function App(){
-  const renderTime = ({ remainingTime }) => {
-      return <View><Teks>{RT}</Teks></View>;
-    }
-  const RT = () => {
-    const name = 'runningtime';
-    return(
-      <View>
-        <View><Text>Remaining</Text></View>
-        <View><Text>value {remainingTime}</Text></View>
-        <View><Text>seconds</Text></View>
-      </View>
-    );
-  };
-  return(
-    <View style={{backgroundColor:'#404040' ,width:'100%' , height:'100%'}}>
-      <SafeAreaView>
-        <Image style={StyleS.content} source={require('./WorkOutIMG/SculptedArms-unscreen.gif')} />
-          <Text style={StyleS.teks}>Arm Raises 12X</Text>
+const Countdown = ({navigation}) => {
+    const [timeLeft, setTimeLeft] = useState(10);
+  
+    const tick = () => {
+      // stop the timer when it reaches 0
+      if (timeLeft <= 0) return;
+  
+      setTimeout(() => {
+        setTimeLeft(timeLeft - 1);
+        tick();
+      }, 1000);
+    };
+  
+    // start the timer when the component mounts
+    React.useEffect(() => {
+      tick();
+    }, []);
 
-          <View style={StyleS.CC}>
-            <CountdownCircleTimer
-                 isPlaying
-                 duration={20}
-                 colors={'#FF5151'}
-                 onComplete={() => [true, 1000]}>
-            </CountdownCircleTimer>
-            {renderTime}
+        return(
+          <View style={{backgroundColor:'#404040' ,width:'100%' , height:'100%'}}>
+            <SafeAreaView>
+              <Image style={StyleS.content} source={require('../../assets/WorkOutIMG/SculptedArms-unscreen.gif')} />
+                <Text style={StyleS.teks}>Arm Raises 12X</Text>
+
+                <View style={styles.container}>
+                    <ProgressCircle
+                      style={styles.progressCircle}
+                      progress={timeLeft / 10}
+                      color="#FF5151"
+                        />
+                      <Text style={styles.timerText}>{timeLeft}</Text>
+                </View>
+
+                  <Pressable style={StyleS.Bprev}>
+                    <Text style={StyleS.prev}>
+                      <PrevNextIcon style={StyleS.previcon} name='arrowleft'color={'#fff'} size={30}/>   Prev
+                    </Text>
+                  </Pressable>
+                  <Pressable style={StyleS.Bnext}>
+                    <Text style={StyleS.next}>Next  
+                      <PrevNextIcon style={StyleS.nexticon} name='arrowright'color={'#fff'} size={30}/>
+                    </Text>
+                  </Pressable>
+            </SafeAreaView>
+            <StatusBar style="auto"/>
           </View>
-            <Pressable style={StyleS.Bprev}>
-              <Text style={StyleS.prev}>
-                <PrevNextIcon style={StyleS.previcon} name='arrowleft'color={'#fff'} size={30}/>   Prev
-              </Text>
-            </Pressable>
-            <Pressable style={StyleS.Bnext}>
-              <Text style={StyleS.next}>Next  
-                <PrevNextIcon style={StyleS.nexticon} name='arrowright'color={'#fff'} size={30}/>
-              </Text>
-            </Pressable>
-      </SafeAreaView>
-      <StatusBar style="auto"/>
-    </View>
-  );
-}
+        );
+  }
+
+  export default  Countdown;
 
 const StyleS = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+  },
+  progressCircle: {
+    margin: 8,
+  },
+  timerText: {
+    fontSize: 24,
+    margin: 8,
+  },
   content:{
     width: '100%',
     height: 395 ,
@@ -112,4 +130,3 @@ const StyleS = StyleSheet.create({
     borderColor:'#B0B0B0'
   },
 })
-
