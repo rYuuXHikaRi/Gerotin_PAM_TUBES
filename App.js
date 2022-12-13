@@ -1,39 +1,70 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import AppNavigator from './src/navigations/Navigator'
-import * as Font from 'expo-font';
-import {AppLoading} from 'expo'
-import { isRequired } from 'react-native/Libraries/DeprecatedPropTypes/DeprecatedColorPropType';
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 
-export default class App extends React.Component {
-  state = {
-    isFontLoaded:false
-  }
+//Local components
+import Login from './src/screens/Login';
+import Home from './src/screens/Home';
+import Preferensi from './src/screens/Preferensi';
+import Profile from './src/screens/Profile';
+import Gerakan from './src/screens/Gerakan';
+import Article from './src/screens/Article';
+import History from './src/screens/History';
+import ArticleContent from './src/screens/Artikel_Content';
+import Register from './src/screens/Register';
 
-  async componentDidMount(){
-    await Font.loadAsync({
-      'SemiBold' : require('./src/fonts/Montserrat-SemiBold.otf'),
-      'Medium' : require('./src/fonts/Montserrat-Medium.otf'),
-      'Regular' : require('./src/fonts/Montserrat-Regular.otf')
-    });
-    this.setState({isFontLoaded:true})
-  }
+const Stack = createStackNavigator();
 
-  render(){
-    return (
-      (this.state.isFontLoaded === true) ? (<AppNavigator/>):(AppLoading)
-      
-    );
-  }
- 
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+      <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{ headerShown: false }}
+        />
+      <Stack.Screen
+          name="Register"
+          component={Register}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Riwayat"
+          component={History}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Artikel"
+          component={Article}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="KontenArtikel"
+          component={ArticleContent}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Preferensi"
+          component={Preferensi}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Profile"
+          component={Profile}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Gerakan"
+          component={Gerakan}
+          options={{ headerShown: false }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

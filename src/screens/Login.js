@@ -1,15 +1,12 @@
 import React from 'react';
-import {Text,View,Image, TextInput} from 'react-native';
+import {Text,View,Image, TextInput, Pressable} from 'react-native';
 import Icon from '@expo/vector-icons/AntDesign';
 
-export default class Login extends React.Component{
-
-    render(){
-        const {navigate} = this.props.navigation
+const Login = ({navigation}) => {
         return(
             
             <View style={{backgroundColor:"#414141",height:"100%"}}>
-                <Image source ={require('../images/image.jpg')}
+                <Image source ={require('../../assets/icon.png')}
                     style={{width:"100%",height:"25%"}}
                 />
                 <View 
@@ -79,7 +76,7 @@ export default class Login extends React.Component{
                 </View>
                
 
-                <View style={{
+                <Pressable style={{
                     marginHorizontal:55,
                     alignItems:"center",
                     justifyContent:"center",
@@ -87,15 +84,15 @@ export default class Login extends React.Component{
                     backgroundColor:"#ff0000",
                     paddingVertical:10,
                     borderRadius:23
-                }}>
+                }} onPress={() => navigation.navigate("Home")}>
                     <Text style={{
                         color:"black",
                         fontFamily:"SemiBold"
                     }}>Login</Text>
-                </View>
+                </Pressable>
                 <Text 
                 
-                onPress={()=>navigate('Register')}
+                onPress={() => navigation.navigate("Register")}
                 
                 style={{
                     alignSelf:"center",
@@ -105,5 +102,5 @@ export default class Login extends React.Component{
                 }}>Don't have account? create a new account</Text>
             </View>
         )
-    }
 }
+export default Login;

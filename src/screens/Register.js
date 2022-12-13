@@ -4,16 +4,14 @@ import {Text,View,Image, TextInput,TouchableOpacity} from 'react-native';
 import Icon from "react-native-vector-icons/FontAwesome";
 //class based
 
-export default class Register extends React.Component{
+const Register = ({navigation}) => {
 
-    render(){
-            const {navigate} = this.props.navigation
         return(
             <View style={{backgroundColor:"#414141",height:"100%"}}>
               <TouchableOpacity onPress={() => navigation.navigate("Login")}>
           <Icon name="arrow-left" size={30} style={{ color: "white" }} />
         </TouchableOpacity> 
-                <Image source ={require('../images/image.jpg')}
+                <Image source ={require('../../assets/icon.png')}
                     style={{width:"100%",height:"25%"}}
                 />
 
@@ -156,11 +154,11 @@ export default class Register extends React.Component{
                         color:"black",
                         fontFamily:"SemiBold"
                         
-                    }}onPress={()=>navigate('Login')}>Create Account</Text>
+                    }}onPress={() => navigation.navigate("Login")}>Create Account</Text>
                 </View>
                 <Text 
                 
-                onPress={()=>navigate('Login')}
+                onPress={() => navigation.navigate("Login")}
                 
                 style={{
                     alignSelf:"center",
@@ -170,5 +168,6 @@ export default class Register extends React.Component{
                 }}>Already have a account?Login</Text>
             </View>
         )
-    }
 }
+
+export default Register;
