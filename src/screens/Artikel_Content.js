@@ -1,18 +1,19 @@
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View,Image } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Icon1 from 'react-native-vector-icons/Ionicons';
 import { SafeAreaView, ScrollView} from 'react-native';
 
-const article = () => {
+const ArticleContent = ({navigation}) => {
   return (
 
     <View style={styles.container}>
       <View style={styles.header}>
-        <Image source={require('./assets/artikel.jpg')}  style={{ width: "100%", height: 310,position:'relative' }}/>
+        <Image source={require('../../assets/artikel.jpg')}  style={{ width: "100%", height: 310,position:'relative' }}/>
         <View style={styles.title}>
           <Text style={styles.titleText}>Pentingnya Pemanasan Sebelum Olahraga</Text>
         </View>
-        <Ionicons name="arrow-back-circle" size={35} color="#FF5151" style={{position:'absolute'}}/>
+        <Icon1 name="arrow-back-circle" size={35} color="#FF5151" style={{position:'absolute'}}/>
       </View>
       <ScrollView style={styles.historycontainer}>  
         <Text style={styles.isi}> Pemanasan sebelum berolahraga adalah hal yang penting untuk dilakukan, namun tidak sedikit orang yang sering mengabaikannya. Kamu mungkin berpikir bahwa tubuh bisa langsung berolahraga tanpa melakukan pemanasan terlebih dahulu. Meskipun kamu sudah terampil berolahraga, tubuh tetap perlu menyesuaikan diri sebelum melakukan aktivitas yang lebih berat daripada biasanya.
@@ -26,7 +27,7 @@ const article = () => {
   );
 }
 
-export default article
+export default ArticleContent
 
 const styles = StyleSheet.create({
   container: {

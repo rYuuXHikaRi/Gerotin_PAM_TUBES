@@ -3,19 +3,20 @@ import {
     View,
     Text,
     StyleSheet,
-    Image
+    Image,
+    Pressable
 } from "react-native";
 
 class ScrollViewHorizontal2 extends Component {
     render() {
         return (
-            <View style={{ marginTop: 5, marginLeft: 18, }}>
+            <Pressable style={{ marginTop: 5, marginLeft: 18, }} onPress={this.props.action}>
                 <View style={{ flex: 2 }}>
                     <Image source={this.props.imageUri}
                         style={{ flex: 1, width: 114, height: 222, borderRadius: 15 }}
                     />
                 </View>
-            </View>
+            </Pressable>
         );
     }
 }

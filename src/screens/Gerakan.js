@@ -4,7 +4,7 @@ import { StyleSheet, Text, View,Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView, ScrollView} from 'react-native';
 
-export default function Gerakan() {
+const Gerakan = ({navigation}) => {
   var barView=[];
   for (let i = 0; i < 8; i++) {
     var view =
@@ -36,7 +36,7 @@ export default function Gerakan() {
     </View>
   );
 }
-
+ export default Gerakan;
 
 const styles = StyleSheet.create({
   container: {

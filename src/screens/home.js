@@ -18,7 +18,7 @@ const Home = ({navigation}) => {
     <SafeAreaView style={SafeViewAndroid.AndroidSafeArea}>
         <View style={styles.container}>
             <View style={styles.header}>
-                <View>
+                <Pressable onPress={() => navigation.navigate("Profile")}>
                     <Image
                         source={require("../../assets/profile.jpg")}
                         style={{
@@ -28,7 +28,7 @@ const Home = ({navigation}) => {
                             borderWidth: 2, 
                             borderColor: "#FF5151"}}
                     />
-                </View>
+                </Pressable>
             
                 <View>
                     <Text style={styles.textHeader}>GEROtin</Text>
@@ -99,9 +99,9 @@ const Home = ({navigation}) => {
                     <View style={{width: 250, height:100, marginLeft: 24,}}>
                         <Text style={styles.contentText}>Artikel Yang Cocok Untuk Kamu</Text>
                         <ScrollView horizontal={true} style={{marginLeft: -11}}>
-                            <ScrollViewHorizontal imageUri={require("../../assets/Home/latestExercise.jpg")}/>
-                            <ScrollViewHorizontal imageUri={require("../../assets/Home/latestExercise.jpg")}/>
-                            <ScrollViewHorizontal imageUri={require("../../assets/Home/latestExercise.jpg")}/>
+                            <ScrollViewHorizontal action={() => navigation.navigate("KontenArtikel")} imageUri={require("../../assets/Home/latestExercise.jpg")}/>
+                            <ScrollViewHorizontal action={() => navigation.navigate("KontenArtikel")} imageUri={require("../../assets/Home/latestExercise.jpg")}/>
+                            <ScrollViewHorizontal action={() => navigation.navigate("KontenArtikel")} imageUri={require("../../assets/Home/latestExercise.jpg")}/>
                         </ScrollView>
                     </View>
                 </View>
@@ -110,10 +110,10 @@ const Home = ({navigation}) => {
                     <Text style={styles.contentText}>Daftar Menu Latihan</Text>
                     <View style={{width: 380, height:222, marginLeft: -18}}>
                         <ScrollView horizontal={true}>
-                            <ScrollViewHorizontal2 imageUri={require("../../assets/Home/latestExercise.jpg")}/>
-                            <ScrollViewHorizontal2 imageUri={require("../../assets/Home/latestExercise.jpg")}/>
-                            <ScrollViewHorizontal2 imageUri={require("../../assets/Home/latestExercise.jpg")}/>
-                            <ScrollViewHorizontal2 imageUri={require("../../assets/Home/latestExercise.jpg")}/>
+                            <ScrollViewHorizontal2 action={() => navigation.navigate("Gerakan")} imageUri={require("../../assets/Home/latestExercise.jpg")}/>
+                            <ScrollViewHorizontal2 action={() => navigation.navigate("Gerakan")} imageUri={require("../../assets/Home/latestExercise.jpg")}/>
+                            <ScrollViewHorizontal2 action={() => navigation.navigate("Gerakan")} imageUri={require("../../assets/Home/latestExercise.jpg")}/>
+                            <ScrollViewHorizontal2 action={() => navigation.navigate("Gerakan")} imageUri={require("../../assets/Home/latestExercise.jpg")}/>
                         </ScrollView>    
                     </View>
                 </View>
@@ -127,15 +127,15 @@ const Home = ({navigation}) => {
                                 justifyContent: "space-between"
                             }}
                 >
-                    <View>
+                    <Pressable onPress={() => navigation.navigate("Riwayat")}>
                         <Icon2 name='history' size={32} style={{color: "#FF5151", marginLeft: 2}}/>
                         <Text style={styles.navigatorText}>Riwayat</Text>
-                    </View>
+                    </Pressable>
 
-                    <View>
+                    <Pressable onPress={() => navigation.navigate("Artikel")}>
                         <Icon2 name='article' size={32} style={{color: "#FF5151", marginLeft: 1}}/>
                         <Text style={styles.navigatorText}>Artikel</Text>
-                    </View> 
+                    </Pressable> 
 
                     <Pressable onPress={() => navigation.navigate("Preferensi")}>
                         <Icon3 name='gears' size={32} style={{color: "#FF5151", marginLeft: 6}}/>
