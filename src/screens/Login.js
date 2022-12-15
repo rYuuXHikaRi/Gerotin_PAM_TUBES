@@ -7,7 +7,7 @@ const Login = ({navigation}) => {
             
             <View style={{backgroundColor:"#414141",height:"100%"}}>
                 <Image source ={require('../../assets/icon.png')}
-                    style={{width:"100%",height:"25%"}}
+                    style={{width:100,height:100,marginLeft:146,marginTop:50}}
                 />
                 <View 
                 style={{
@@ -17,7 +17,8 @@ const Login = ({navigation}) => {
                     border: 'bold',
                     borderWidth:4,
                     padding:30,
-                    margin:45
+                    margin:45,
+                    marginTop:110
                 }}>
                 <Text
                  style={{
@@ -31,10 +32,9 @@ const Login = ({navigation}) => {
                 >LOGIN</Text>
                 
                 <View style={{
+                    width: "90%",
                     flexDirection:"row",
-                
-                    alignItems:"center",
-                    marginHorizontal:55,
+                    marginHorizontal: 15,
                     borderWidth:2,
                     marginTop:50,
                     paddingHorizontal:10,
@@ -45,6 +45,7 @@ const Login = ({navigation}) => {
                 }}>
                     <Icon name="mail" color="#ff0000" size={24}/>
                     <TextInput placeholder="Email"
+                    placeholderTextColor="#ffffff"
                         style={{paddingHorizontal:10,color:"white"}}
 
                     />
@@ -54,9 +55,10 @@ const Login = ({navigation}) => {
 
                 </View>
                 <View style={{
+                    width: "90%",
                     flexDirection:"row",
                     alignItems:"center",
-                    marginHorizontal:55,
+                    marginHorizontal:15,
                     borderWidth:2,
                     marginTop:15,
                     paddingHorizontal:10,
@@ -66,6 +68,8 @@ const Login = ({navigation}) => {
                 }}>
                     <Icon name="key" color="#ff0000" size={24}/>
                     <TextInput placeholder="Password"
+                    placeholderTextColor="#ffffff"
+                            secureTextEntry
                         style={{paddingHorizontal:10,color:"white"}}
                     />
 

@@ -12,7 +12,7 @@ const Register = ({navigation}) => {
           <Icon name="arrow-left" size={30} style={{ color: "white" }} />
         </TouchableOpacity> 
                 <Image source ={require('../../assets/icon.png')}
-                    style={{width:"100%",height:"25%"}}
+                    style={{width:150,height:150,marginLeft:116,marginTop:10}}
                 />
 
         
@@ -25,9 +25,9 @@ const Register = ({navigation}) => {
                     borderWidth:4,
                     padding:30,
                     marginBottom :0,
-                    marginTop:10,
-                    marginLeft:45,
-                    marginRight:45
+                    marginTop:50,
+                    marginLeft:35,
+                    marginRight:35
                 }}>
                 <Text
                  style={{
@@ -39,15 +39,16 @@ const Register = ({navigation}) => {
                       }}
                 >REGISTER</Text>
                 <View style={{
-                    flexDirection:"row",
-                    alignItems:"center",
-                    marginHorizontal:55,
-                    borderWidth:2,
-                    marginTop:50,
-                    paddingHorizontal:10,
-                    borderColor:"#ff0000",
-                    borderRadius:23,
-                    paddingVertical:2
+                      width: "90%",
+                      flexDirection:"row",
+                      alignItems:"center",
+                      marginHorizontal:15,
+                      borderWidth:2,
+                      marginTop:15,
+                      paddingHorizontal:10,
+                      borderColor:"#ff0000",
+                      borderRadius:23,
+                      paddingVertical:2
                 }}>
                   
                     <TextInput 
@@ -58,19 +59,20 @@ const Register = ({navigation}) => {
 
                 </View>
                 <View style={{
-                    flexDirection:"row",
-                    alignItems:"center",
-                    marginHorizontal:55,
-                    borderWidth:2,
-                    marginTop:15,
-                    paddingHorizontal:10,
-                    borderColor:"#ff0000",
-                    borderRadius:23,
-                    paddingVertical:2
+                     width: "90%",
+                     flexDirection:"row",
+                     alignItems:"center",
+                     marginHorizontal:15,
+                     borderWidth:2,
+                     marginTop:15,
+                     paddingHorizontal:10,
+                     borderColor:"#ff0000",
+                     borderRadius:23,
+                     paddingVertical:2
                 }}>
                    
                    <TextInput 
-                        secureTextEntry
+                        
                         placeholder="Email"
                         placeholderTextColor="#ffffff"
                         style={{paddingHorizontal:10,color:"white"}}
@@ -78,19 +80,20 @@ const Register = ({navigation}) => {
 
                 </View>
                 <View style={{
-                    flexDirection:"row",
-                    alignItems:"center",
-                    marginHorizontal:55,
-                    borderWidth:2,
-                    marginTop:15,
-                    paddingHorizontal:10,
-                    borderColor:"#ff0000",
-                    borderRadius:23,
-                    paddingVertical:2
+                     width: "90%",
+                     flexDirection:"row",
+                     alignItems:"center",
+                     marginHorizontal:15,
+                     borderWidth:2,
+                     marginTop:15,
+                     paddingHorizontal:10,
+                     borderColor:"#ff0000",
+                     borderRadius:23,
+                     paddingVertical:2
                 }}>
                    
                    <TextInput 
-                        secureTextEntry
+                        
                         placeholder="Phone"
                         placeholderTextColor="#ffffff"
                         style={{paddingHorizontal:10,color:"white"}}
@@ -99,15 +102,16 @@ const Register = ({navigation}) => {
 
                 </View>
                 <View style={{
-                    flexDirection:"row",
-                    alignItems:"center",
-                    marginHorizontal:55,
-                    borderWidth:2,
-                    marginTop:15,
-                    paddingHorizontal:10,
-                    borderColor:"#ff0000",
-                    borderRadius:23,
-                    paddingVertical:2
+                     width: "90%",
+                     flexDirection:"row",
+                     alignItems:"center",
+                     marginHorizontal:15,
+                     borderWidth:2,
+                     marginTop:15,
+                     paddingHorizontal:10,
+                     borderColor:"#ff0000",
+                     borderRadius:23,
+                     paddingVertical:2
                 }}>
                    
                    <TextInput 
@@ -120,15 +124,16 @@ const Register = ({navigation}) => {
 
                 </View>
                 <View style={{
-                    flexDirection:"row",
-                    alignItems:"center",
-                    marginHorizontal:55,
-                    borderWidth:2,
-                    marginTop:15,
-                    paddingHorizontal:10,
-                    borderColor:"#ff0000",
-                    borderRadius:23,
-                    paddingVertical:2
+                     width: "90%",
+                     flexDirection:"row",
+                     alignItems:"center",
+                     marginHorizontal:15,
+                     borderWidth:2,
+                     marginTop:15,
+                     paddingHorizontal:10,
+                     borderColor:"#ff0000",
+                     borderRadius:23,
+                     paddingVertical:2
                 }}>
                    
                    <TextInput 
