@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
     contentBox: {
         backgroundColor: "#FF5151",
         width: "auto",
-        height: 590,
+        height: 550,
         borderTopLeftRadius: 50,
         borderTopRightRadius: 50,
 
