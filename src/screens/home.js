@@ -10,10 +10,14 @@ import SafeViewAndroid from '../../components/SafeViewAndroid';
 import Preferensi from './Preferensi';
 import ScrollViewHorizontal from '../../components/ScrollViewHorizontal';
 import ScrollViewHorizontal2 from '../../components/ScrollViewHorizontal2';
-
+import WorkOut from '../data/WorkOut';
 
 
 const Home = ({navigation}) => {
+
+
+    const WorkOutData = WorkOut;
+
   return (
     <SafeAreaView style={SafeViewAndroid.AndroidSafeArea}>
         <View style={styles.container}>
@@ -99,6 +103,7 @@ const Home = ({navigation}) => {
                     <View style={{width: 250, height:100, marginLeft: 24,}}>
                         <Text style={styles.contentText}>Artikel Yang Cocok Untuk Kamu</Text>
                         <ScrollView horizontal={true} style={{marginLeft: -11}}>
+
                             <ScrollViewHorizontal action={() => navigation.navigate("KontenArtikel")} imageUri={require("../../assets/Home/latestExercise.jpg")}/>
                             <ScrollViewHorizontal action={() => navigation.navigate("KontenArtikel")} imageUri={require("../../assets/Home/latestExercise.jpg")}/>
                             <ScrollViewHorizontal action={() => navigation.navigate("KontenArtikel")} imageUri={require("../../assets/Home/latestExercise.jpg")}/>
@@ -110,10 +115,10 @@ const Home = ({navigation}) => {
                     <Text style={styles.contentText}>Daftar Menu Latihan</Text>
                     <View style={{width: 380, height:222, marginLeft: -18}}>
                         <ScrollView horizontal={true}>
-                            <ScrollViewHorizontal2 action={() => navigation.navigate("Gerakan")} imageUri={require("../../assets/Home/latestExercise.jpg")}/>
-                            <ScrollViewHorizontal2 action={() => navigation.navigate("Gerakan")} imageUri={require("../../assets/Home/latestExercise.jpg")}/>
-                            <ScrollViewHorizontal2 action={() => navigation.navigate("Gerakan")} imageUri={require("../../assets/Home/latestExercise.jpg")}/>
-                            <ScrollViewHorizontal2 action={() => navigation.navigate("Gerakan")} imageUri={require("../../assets/Home/latestExercise.jpg")}/>
+                            {WorkOutData.map((item,key)=>{
+                                return <ScrollViewHorizontal2 key={key} action={() => navigation.navigate("Gerakan", {image:item.image, excersises:item.excersises, id:item.id, name:item.name})} imageUri={{uri:item.image}}/>
+
+                            })}
                         </ScrollView>    
                     </View>
                 </View>
