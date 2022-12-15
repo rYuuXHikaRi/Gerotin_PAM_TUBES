@@ -1,8 +1,35 @@
 import React from 'react';
 import {Text,View,Image, TextInput, Pressable} from 'react-native';
 import Icon from '@expo/vector-icons/AntDesign';
+import { firebaseAuthentication } from '../config/firebase'
 
 const Login = ({navigation}) => {
+    state = {
+        email:'',
+        password: ''
+    }
+    handleChangeField = (e) =>{
+        this.setState({[e.target.name]: e.target.value})
+    }
+    handleSubmit = (e) =>{
+        e.preventDefault();
+        const {email, password} = this.state
+        firebaseAuthentication.signInWithEmailAndPassword(email, password)
+        .then(res=>{
+            console.log(res)
+            if(res.user.emailVerified){
+                this.props.history.push('/home')
+            }else{
+                alert('Verifikasi email anda terlebih dahulu!')
+                firebaseAuthentication.signOut()
+            }
+        })
+        .catch(error=>{
+            alert(error.message)
+        })
+    }
+
+        const {email, password} = this.state
         return(
             
             <View style={{backgroundColor:"#414141",height:"100%"}}>
@@ -46,6 +73,7 @@ const Login = ({navigation}) => {
                     <Icon name="mail" color="#ff0000" size={24}/>
                     <TextInput placeholder="Email"
                     placeholderTextColor="#ffffff"
+                    value={email} onChange={this.handleChangeField} name="email" label="Email" required
                         style={{paddingHorizontal:10,color:"white"}}
 
                     />
@@ -69,6 +97,7 @@ const Login = ({navigation}) => {
                     <Icon name="key" color="#ff0000" size={24}/>
                     <TextInput placeholder="Password"
                     placeholderTextColor="#ffffff"
+                    value={password} onChange={this.handleChangeField} name="password" label="Password" required
                             secureTextEntry
                         style={{paddingHorizontal:10,color:"white"}}
                     />
@@ -80,7 +109,8 @@ const Login = ({navigation}) => {
                 </View>
                
 
-                <Pressable style={{
+                <Pressable onSubmit={this.handleSubmit}
+                style={{
                     marginHorizontal:55,
                     alignItems:"center",
                     justifyContent:"center",

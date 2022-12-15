@@ -10,10 +10,21 @@ import SafeViewAndroid from '../../components/SafeViewAndroid';
 import Preferensi from './Preferensi';
 import ScrollViewHorizontal from '../../components/ScrollViewHorizontal';
 import ScrollViewHorizontal2 from '../../components/ScrollViewHorizontal2';
-
+import { Component } from 'react/cjs/react.production.min';
+import {firebaseAuthentication} from '../config/firebase'
 
 
 const Home = ({navigation}) => {
+    ComponentDidMount()
+    {
+        firebaseAuthentication.onAuthStateChanged((user)=>{
+            if(!user){
+                this.props.history.push('/login')
+            }
+        })
+
+        
+    }
   return (
     <SafeAreaView style={SafeViewAndroid.AndroidSafeArea}>
         <View style={styles.container}>

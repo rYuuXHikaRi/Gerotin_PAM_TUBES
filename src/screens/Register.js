@@ -2,10 +2,36 @@ import React from 'react';
 import {Text,View,Image, TextInput,TouchableOpacity} from 'react-native';
 
 import Icon from "react-native-vector-icons/FontAwesome";
-//class based
+import { firebaseAuthentication } from '../config/firebase'
 
 const Register = ({navigation}) => {
+    state = {
+        email:'',
+        password: ''
+    }
+    handleChangeField = (e) =>{
+        this.setState({[e.target.name]: e.target.value})
+    }
+    handleSubmit = (e) =>{
+        e.preventDefault();
+        const {email, password} = this.state
+        firebaseAuthentication.createUserWithEmailAndPassword(email, password)
+        .then(res=>{
+            firebaseAuthentication.currentUser.sendEmailVerification()
+            .then(()=>{
+                alert('Mohon verifikasi email anda');
+                this.props.history.push('/login');
+            })
+            .catch((error)=>{
+                alert(error.message)
+            })
+        })
+        .catch(err=>{
+            alert(err.message)
+        })
+    }
 
+    const {email, password} = this.state
         return(
             <View style={{backgroundColor:"#414141",height:"100%"}}>
               <TouchableOpacity onPress={() => navigation.navigate("Login")}>
@@ -76,6 +102,7 @@ const Register = ({navigation}) => {
                         placeholder="Email"
                         placeholderTextColor="#ffffff"
                         style={{paddingHorizontal:10,color:"white"}}
+                        value={email} onChange={this.handleChangeField} name="email" label="Email" required
                     />
 
                 </View>
@@ -119,6 +146,7 @@ const Register = ({navigation}) => {
                         placeholder="Password"
                         placeholderTextColor="#ffffff"
                         style={{paddingHorizontal:10,color:"white"}}
+                        value={password} onChange={this.handleChangeField} name="password" label="Password" required
                     />
                     
 
@@ -141,12 +169,13 @@ const Register = ({navigation}) => {
                         placeholder="Confirm Password"
                         placeholderTextColor="#ffffff"
                         style={{paddingHorizontal:10,color:"white"}}
+                        value={password} onChange={this.handleChangeField} name="password" label="Password" required
                     />
                     
 
                 </View>
                 </View>
-                <View style={{
+                <View onSubmit={this.handleSubmit} style={{
                     marginHorizontal:55,
                     alignItems:"center",
                     justifyContent:"center",
