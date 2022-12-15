@@ -9,7 +9,7 @@ import SafeViewAndroid from '../../components/SafeViewAndroid';
 
 const History = ({navigation}) => {
   var barView=[];
-  for (let i = 0; i < 8; i++) {
+  for (let i = 0; i < 1; i++) {
     var view =
     <View style={styles.historybox}>
       <Image source={require('../../assets/dada.jpg')}  style={{ width: 100, height: 80,margin:10,marginRight:40 }}/>
@@ -39,6 +39,10 @@ const History = ({navigation}) => {
             {barView}
           </ScrollView> 
         </View>
+        <Pressable onPress={() => navigation.navigate("Riwayat")}>
+            <Icon2 name='history' size={32} style={{color: "#FF5151", marginLeft: 2}}/>
+            <Text style={styles.navigatorText}> Tambah Riwayat</Text>
+        </Pressable>
         <StatusBar style="auto" />
       </View>
     </SafeAreaView>
