@@ -11,6 +11,8 @@ import Countdown from './src/screens/Countdown';
 import Article from './src/screens/Article';
 import History from './src/screens/History';
 import ArticleContent from './src/screens/Artikel_Content';
+import Finish from "./src/screens/Finish";
+import Break from './src/screens/Break';
 
 const Stack = createStackNavigator();
 
@@ -54,8 +56,18 @@ export default function App() {
           options={{ headerShown: false }}
         />
         <Stack.Screen
+          name="Finish"
+          component={Finish}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
           name="Countdown"
           component={Countdown}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Break"
+          component={Break}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

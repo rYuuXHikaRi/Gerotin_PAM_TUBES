@@ -1,25 +1,57 @@
 import { StatusBar } from "expo-status-bar";
 import {SafeAreaView,StyleSheet,Text,View,Image,Button,Pressable,} from "react-native";
-import React from "react";
-import PrevNextIcon from "react-native-vector-icons/AntDesign";
+import React, { useState } from "react";
+import IconArrow from "react-native-vector-icons/AntDesign";
 import { CountdownCircleTimer } from "react-native-countdown-circle-timer";
 import { useRoute } from "@react-navigation/core";
 
 const Countdown = ({ navigation }) => {
   const route = useRoute();
-  console.log(route.params);
+  const index = route.params.index;
+  const excersisesData = route.params.excersises;
+
+  const nextExcersises = () => {
+    if (index == 6) {
+      navigation.navigate("Break")
+    } else {
+        navigation.navigate("Countdown", {
+        excersises: excersisesData,
+        image: excersisesData[index + 1].image,
+        name: excersisesData[index + 1].name,
+        set: excersisesData[index + 1].sets,
+        index: index + 1
+      })
+    }
+  }
+  const prevExcersisesStyles = () => {
+    if (index == 0) {
+        return {display: "none",
+                backgroundColor: '#6e6d6d'}
+    } else if(index > 0){
+        navigation.navigate("Countdown", {
+        excersises: excersisesData,
+        image: excersisesData[index - 1].image,
+        name: excersisesData[index - 1].name,
+        set: excersisesData[index - 1].sets,
+        index: index - 1
+    })
+  }
+}
+
   return (
     <View style={{ backgroundColor: "#404040", width: "100%", height: "100%" }}>
       <SafeAreaView>
         <Image
           style={StyleS.content}
-          source={require("../../assets/WorkOutIMG/SculptedArms-unscreen.gif")}
+          source={{uri:route.params.image}}
         />
-        <Text style={StyleS.teks}>{}</Text>
+        <Text style={StyleS.teks}>{route.params.name}</Text>
+        <Text style={StyleS.teks}>{route.params.set + " X"}</Text>
 
-        <Pressable style={StyleS.Bprev}>
+        <Pressable style={StyleS.Bprev}
+          onPress={prevExcersisesStyles}>
           <Text style={StyleS.prev}>
-            <PrevNextIcon
+            <IconArrow
               style={StyleS.previcon}
               name="arrowleft"
               color={"#fff"}
@@ -29,10 +61,11 @@ const Countdown = ({ navigation }) => {
           </Text>
         </Pressable>
         
-        <Pressable style={StyleS.Bnext}>
+        <Pressable style={StyleS.Bnext} 
+          onPress={nextExcersises}>
           <Text style={StyleS.next}>
-            Next
-            <PrevNextIcon
+            Next 
+            <IconArrow
               style={StyleS.nexticon}
               name="arrowright"
               color={"#fff"}

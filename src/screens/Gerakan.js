@@ -15,7 +15,8 @@ import { useRoute } from "@react-navigation/native";
 const Gerakan = ({ navigation }) => {
   const route = useRoute();
   const excersisesData = route.params.excersises;
-  const item = route.params.excersises;
+
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -53,18 +54,16 @@ const Gerakan = ({ navigation }) => {
           })}
         </ScrollView>
       </View>
-        <Pressable
-    
+        <Pressable 
           style={styles.startBar}
-          onPress={() =>
-            navigation.navigate("Countdown",{
-              name: item.name,
-              image: item.image,
-              set: item.set
-            })
-          }
+          onPress={() => navigation.navigate("Countdown", {
+            excersises: excersisesData,
+            image:excersisesData[0].image, 
+            name: excersisesData[0].name,
+            set: excersisesData[0].sets,
+            index: 0})}
         >
-          <Text style={styles.btnStart}>Start</Text>
+          <Text>Start</Text>
         </Pressable>
       <StatusBar style="auto" />
     </View>

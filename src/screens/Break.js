@@ -3,11 +3,11 @@ import { StyleSheet, Text, View,Image,Pressable} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView, ScrollView} from 'react-native';
 
-const Break = () => {
+const Break = ({ navigation }) => {
   return (
     <View style={styles.container}>
         <View style={styles.topContainer}>
-        <Image source={require('./assets/rest.png')}  style={{ width: 300, height: 300 }}/>
+        <Image source={"https://i.pinimg.com/564x/9b/bc/f9/9bbcf91b8148ce91e09614fa0f18cbe3.jpg"}  style={{ width: 300, height: 300 }}/>
 
         </View>
         <View style={styles.bottomContainer}>

@@ -3,11 +3,11 @@ import { StyleSheet, Text, View,Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView, ScrollView} from 'react-native';
 
-const finish = () => {
+const Finish = () => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-      <Image source={require('./assets/trr.png')}  style={{ width: 300, height: 400,position:'relative',marginTop:100}}/>
+      <Image source={require('../../assets/trr.png')}  style={{ width: 300, height: 400,position:'relative',marginTop:100}}/>
       <Text style={styles.text}> Congratulations! </Text>
       <Text style={styles.text1}> You Have Completed The Workout </Text>
       </View>
@@ -19,7 +19,7 @@ const finish = () => {
   );
 }
 
-export default finish
+export default Finish;
 
 const styles = StyleSheet.create({
   container: {

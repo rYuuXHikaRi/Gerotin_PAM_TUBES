@@ -33,14 +33,20 @@ export default [
       },
       {
           id:"14",
-          image:"https://www.yogajournal.com/wp-content/uploads/2021/12/Cobra.gif?width=730",
-          name:"COBRA STRETCH",
+          image:"https://i.pinimg.com/originals/18/27/be/1827be178c019b1dc6f8a8d8b4a7b0b8.gif",
+          name:"Mountain Climber",
           sets:10,
       },
       {
           id:"15",
-          image:"https://www.vissco.com/wp-content/uploads/animation/sub/double-knee-to-chest-stretch.gif",
-          name:"CHEST STRETCH",
+          image:"https://i.pinimg.com/originals/d9/22/2c/d9222c75a59249401861a1103446b6ed.gif",
+          name:"Side Plank",
+          sets:10,
+      },
+      {
+          id:"16",
+          image:"https://i.pinimg.com/originals/3e/f6/16/3ef616e7ebf25950726f13e7d32a310d.gif",
+          name:"Gooblet Squad",
           sets:10,
       }
     ],
@@ -71,13 +77,25 @@ export default [
         sets:20,
       },
       {
-        id:"94",
+        id:"93",
         image:"https://i.pinimg.com/originals/cf/b5/67/cfb5677a755fe7288b608a4fec6f09a0.gif",
         name:"PLANK",
         sets:10,
       },
       {
+        id:"94",
+        image:"https://www.gymguider.com/wp-content/uploads/2017/10/straight-leg-raise.gif",
+        name:"LEG RAISES",
+        sets:14,
+      },
+      {
         id:"95",
+        image:"https://i.pinimg.com/originals/cf/b5/67/cfb5677a755fe7288b608a4fec6f09a0.gif",
+        name:"PLANK",
+        sets:10,
+      },
+      {
+        id:"96",
         image:"https://www.gymguider.com/wp-content/uploads/2017/10/straight-leg-raise.gif",
         name:"LEG RAISES",
         sets:14,
@@ -168,13 +186,13 @@ export default [
         sets:4,
       },
       {
-        id:"25",
+        id:"24",
         image:"https://media4.popsugar-assets.com/files/thumbor/BaWEAcCjtJEjiwf3PqJHnZ_S23A/fit-in/2048xorig/filters:format_auto-!!-:strip_icc-!!-/2016/08/10/766/n/1922729/1eae2dcf3d395379_PushUpTwist.gif",
         name:"PUSH-UP & ROTATION",
         sets:12,
       },
       {
-        id:"26",
+        id:"25",
         image:"https://media3.popsugar-assets.com/files/thumbor/0Xiqpo7pxrKz5CKcRl7XYrKegko/fit-in/1024x1024/filters:format_auto-!!-:strip_icc-!!-/2014/02/27/847/n/1922729/1baf9ec0f5ce4ea9_burpee.3.gif",
         name:"BURPEES",
         sets:10
@@ -186,7 +204,7 @@ export default [
         sets:10
       },
       {
-        id:"26",
+        id:"27",
         image:"https://64.media.tumblr.com/fc7417698e779d83c39fa6d68950a714/tumblr_inline_mrukoaWl0f1qz4rgp.gif",
         name:"Jasmine sit-up",
         sets:10
