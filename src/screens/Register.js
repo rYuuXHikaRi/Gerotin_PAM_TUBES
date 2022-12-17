@@ -1,37 +1,35 @@
-import React from 'react';
-import {Text,View,Image, TextInput,TouchableOpacity} from 'react-native';
+import React, {useState} from 'react';
+import {Text,View,Image, TextInput,TouchableOpacity, Pressable} from 'react-native';
 
 import Icon from "react-native-vector-icons/FontAwesome";
-import { firebaseAuthentication } from '../config/firebase'
+import { firebaseAuthentication } from '../config/firebase';
+import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth'
+
 
 const Register = ({navigation}) => {
-    state = {
-        email:'',
-        password: ''
-    }
-    handleChangeField = (e) =>{
-        this.setState({[e.target.name]: e.target.value})
-    }
-    handleSubmit = (e) =>{
-        e.preventDefault();
-        const {email, password} = this.state
-        firebaseAuthentication.createUserWithEmailAndPassword(email, password)
-        .then(res=>{
-            firebaseAuthentication.currentUser.sendEmailVerification()
-            .then(()=>{
-                alert('Mohon verifikasi email anda');
-                this.props.history.push('/login');
+        
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const onSignUpHandle = () => {
+        if(email !== null && password !== null) {
+            createUserWithEmailAndPassword(firebaseAuthentication,email, password)
+            .then(res => {
+                sendEmailVerification(firebaseAuthentication.currentUser)
+                .then(()=>{
+                    alert('Mohon verifikasi email anda');
+                    navigation.navigate("Login")
+                })
+                .catch((error)=>{
+                    alert(error.message)
+                })
             })
-            .catch((error)=>{
-                alert(error.message)
+            .catch((err) => {
+                alert(err)
             })
-        })
-        .catch(err=>{
-            alert(err.message)
-        })
+        }
     }
 
-    const {email, password} = this.state
         return(
             <View style={{backgroundColor:"#414141",height:"100%"}}>
               <TouchableOpacity onPress={() => navigation.navigate("Login")}>
@@ -58,7 +56,6 @@ const Register = ({navigation}) => {
                 <Text
                  style={{
                      fontSize:30,
-                     fontFamily:"Bold",
                      alignSelf:"center",
                      color:"#ff0000",
                      position: "relative",
@@ -98,11 +95,12 @@ const Register = ({navigation}) => {
                 }}>
                    
                    <TextInput 
-                        
+                        value={email}
+                        onChangeText={(e) => setEmail(e)}
                         placeholder="Email"
                         placeholderTextColor="#ffffff"
                         style={{paddingHorizontal:10,color:"white"}}
-                        value={email} onChange={this.handleChangeField} name="email" label="Email" required
+                        
                     />
 
                 </View>
@@ -120,7 +118,7 @@ const Register = ({navigation}) => {
                 }}>
                    
                    <TextInput 
-                        
+                       
                         placeholder="Phone"
                         placeholderTextColor="#ffffff"
                         style={{paddingHorizontal:10,color:"white"}}
@@ -142,11 +140,12 @@ const Register = ({navigation}) => {
                 }}>
                    
                    <TextInput 
+                        onChangeText={(e) => setPassword(e)}
                         secureTextEntry
                         placeholder="Password"
                         placeholderTextColor="#ffffff"
                         style={{paddingHorizontal:10,color:"white"}}
-                        value={password} onChange={this.handleChangeField} name="password" label="Password" required
+                        
                     />
                     
 
@@ -169,13 +168,13 @@ const Register = ({navigation}) => {
                         placeholder="Confirm Password"
                         placeholderTextColor="#ffffff"
                         style={{paddingHorizontal:10,color:"white"}}
-                        value={password} onChange={this.handleChangeField} name="password" label="Password" required
+                        
                     />
                     
 
                 </View>
                 </View>
-                <View onSubmit={this.handleSubmit} style={{
+                <Pressable  style={{
                     marginHorizontal:55,
                     alignItems:"center",
                     justifyContent:"center",
@@ -186,18 +185,14 @@ const Register = ({navigation}) => {
                 }}>
                     <Text style={{
                         color:"black",
-                        fontFamily:"SemiBold"
                         
-                    }}onPress={() => navigation.navigate("Login")}>Create Account</Text>
-                </View>
+                    }}onPress={onSignUpHandle}>Create Account</Text>
+                </Pressable>
                 <Text 
-                
                 onPress={() => navigation.navigate("Login")}
-                
                 style={{
                     alignSelf:"center",
                     color:"#fff",
-                    fontFamily:"SemiBold",
                     paddingVertical:30
                 }}>Already have a account?Login</Text>
             </View>

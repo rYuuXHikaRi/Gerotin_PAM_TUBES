@@ -7,29 +7,30 @@ import Icon3 from 'react-native-vector-icons/FontAwesome';
 
 // Local components
 import SafeViewAndroid from '../../components/SafeViewAndroid';
-import Preferensi from './Preferensi';
+import Preferensi from './preferensi';
 import ScrollViewHorizontal from '../../components/ScrollViewHorizontal';
 import ScrollViewHorizontal2 from '../../components/ScrollViewHorizontal2';
 import { Component } from 'react/cjs/react.production.min';
+import { signOut } from 'firebase/auth';
 import {firebaseAuthentication} from '../config/firebase'
 
 
-const Home = ({navigation}) => {
-    ComponentDidMount()
-    {
-        firebaseAuthentication.onAuthStateChanged((user)=>{
-            if(!user){
-                this.props.history.push('/login')
-            }
-        })
-
-        
-    }
+const Home = ({navigation,user,
+    setAuthState,
+    setUser}) => {
+        const signOutHandler = () => {
+            signOut(firebaseAuthentication)
+            .then(() => {
+                setUser(null);
+                setAuthState('login');
+            })
+            .catch((err) => console.log(err));
+        }
   return (
     <SafeAreaView style={SafeViewAndroid.AndroidSafeArea}>
         <View style={styles.container}>
             <View style={styles.header}>
-                <Pressable onPress={() => navigation.navigate("Profile")}>
+                <Pressable onPress={() => navigation.navigate("user")}>
                     <Image
                         source={require("../../assets/profile.jpg")}
                         style={{
@@ -151,6 +152,11 @@ const Home = ({navigation}) => {
                     <Pressable onPress={() => navigation.navigate("Preferensi")}>
                         <Icon3 name='gears' size={32} style={{color: "#FF5151", marginLeft: 6}}/>
                         <Text style={styles.navigatorText}>Preferensi</Text>
+                    </Pressable>
+
+                    <Pressable onClick={signOutHandler}>
+                
+                        <Text style={styles.navigatorText}>Sign Out</Text>
                     </Pressable>
                 </View>
             </View>   

@@ -5,7 +5,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 //Local components
 import Login from './src/screens/Login';
 import Home from './src/screens/Home';
-import Preferensi from './src/screens/Preferensi';
+import Preferensi from './src/screens/preferensi';
 import Profile from './src/screens/Profile';
 import Gerakan from './src/screens/Gerakan';
 import Article from './src/screens/Article';
