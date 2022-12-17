@@ -61,7 +61,9 @@ const Gerakan = ({ navigation }) => {
             image:excersisesData[0].image, 
             name: excersisesData[0].name,
             set: excersisesData[0].sets,
-            index: 0})}
+            time: excersisesData[0].time,
+            index: 0,
+          })}
         >
           <Text>Start</Text>
         </Pressable>
