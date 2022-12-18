@@ -7,6 +7,7 @@ import { SafeAreaView, ScrollView} from 'react-native';
 
 // Local components
 import SafeViewAndroid from '../../components/SafeViewAndroid';
+
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const Article = ({navigation}) => {
@@ -39,6 +40,7 @@ const Article = ({navigation}) => {
   //   barView.push(view);
     
   // }
+
   return (
 
     <SafeAreaView style={SafeViewAndroid.AndroidSafeArea}>
@@ -77,7 +79,6 @@ const Article = ({navigation}) => {
               </>
 
               }) }
-
             </ScrollView>  
           </View>
           <StatusBar style="auto" />

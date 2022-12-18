@@ -1,3 +1,4 @@
+
 import React,{useState} from 'react';
 import {Text,View,Image, TextInput} from 'react-native';
 import Icon from '@expo/vector-icons/AntDesign';
@@ -23,8 +24,6 @@ const Login =
             .catch((err) => alert(err));
         }
     }
-
-  
         const {navigate} = this.props.navigation
         return(
             
@@ -128,3 +127,4 @@ const Login =
     }
 
     export default Login
+

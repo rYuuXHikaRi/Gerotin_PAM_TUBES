@@ -1,25 +1,63 @@
+
+import React from "react";
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View,Image } from 'react-native';
+import { StyleSheet, Text, View,Image, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView, ScrollView} from 'react-native';
+import {useRoute} from "@react-navigation/core";
+import  Axios  from "axios";
 
-const finish = () => {
+
+const Finish = ({navigation}) => {
+
+  
+  const route= useRoute()
+  const imageCover = route.params.imageCover;
+  const excersisesName = route.params.excersisesName;
+
+  
+  var date = new Date().getDate();
+  var month = new Date().getMonth();
+  var year = new Date().getFullYear();
+  var hours = new Date().getHours();
+  var min = new Date().getMinutes();
+  var timeExercises = date +'-'+month+'-'+year+' '+hours+':'+min
+  const submit =()=>{
+    const data={
+      name:excersisesName,
+      image:imageCover,
+      time:timeExercises
+    }
+    console.log(data)
+    Axios.post('http://10.0.2.2:3000/history',data)
+    .then(res=>{
+      console.log('res:',res)
+  
+    })
+    navigation.navigate("Home")
+  }
+
+
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-      <Image source={require('./assets/trr.png')}  style={{ width: 300, height: 400,position:'relative',marginTop:100}}/>
+      <Image source={require('../../assets/trr.png')}  style={{ width: 300, height: 400,position:'relative',marginTop:100}}/>
       <Text style={styles.text}> Congratulations! </Text>
       <Text style={styles.text1}> You Have Completed The Workout </Text>
       </View>
-      <View style={styles.textbox}>
+      <Pressable style={styles.textbox} onPress={submit}>
         <Text style={{textAlign:'center', fontWeight:'bold', fontSize:25, color:'white'}}>Home</Text>
-      </View>
+      </Pressable>
+
       <StatusBar style="auto"/>
     </View>
   );
 }
 
-export default finish
+
+export default Finish;
+
 
 const styles = StyleSheet.create({
   container: {
