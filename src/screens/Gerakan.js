@@ -15,13 +15,15 @@ import { useRoute } from "@react-navigation/native";
 const Gerakan = ({ navigation }) => {
   const route = useRoute();
   const excersisesData = route.params.excersises;
+  const imageCover = route.params.image;
+  const excersisesName = route.params.name;
 
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Image
-          source={{ uri: route.params.image }}
+          source={{ uri: imageCover }}
           style={{ width: 400, height: 165, position: "absolute" }}
         />
         <Ionicons
@@ -32,7 +34,7 @@ const Gerakan = ({ navigation }) => {
         />
       </View>
       <View style={styles.textBox}>
-        <Text>{route.params.name}</Text>
+        <Text>{excersisesName}</Text>
       </View>
       <View style={styles.barContainer}>
         <ScrollView>
@@ -57,6 +59,8 @@ const Gerakan = ({ navigation }) => {
         <Pressable 
           style={styles.startBar}
           onPress={() => navigation.navigate("Countdown", {
+            imageCover: imageCover,
+            excersisesName: excersisesName,
             excersises: excersisesData,
             image:excersisesData[0].image, 
             name: excersisesData[0].name,

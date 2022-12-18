@@ -13,11 +13,19 @@ const Countdown = ({ navigation }) => {
   let timer = 0;
   const [timeleft , setTimeLeft] = useState(startTimer)
 
+  const imageCover = route.params.imageCover;
+  const excersisesName = route.params.excersisesName;
+
   const nextExcersises = () => {
     if (index == 6) {
-      navigation.navigate("Finish")
+      navigation.navigate("Finish",{
+        imageCover: imageCover,
+        excersisesName: excersisesName
+      })
     } else {
         navigation.navigate("Break", {
+        imageCover: imageCover,
+        excersisesName: excersisesName,
         excersises: excersisesData,
         image: excersisesData[index + 1].image,
         name: excersisesData[index + 1].name,
@@ -33,6 +41,8 @@ const Countdown = ({ navigation }) => {
                 backgroundColor: '#6e6d6d'}
     } else if(index >= 0){
         navigation.navigate("Countdown", {
+        imageCover: imageCover,
+        excersisesName : excersisesName,
         excersises: excersisesData,
         image: excersisesData[index - 1].image,
         name: excersisesData[index - 1].name,

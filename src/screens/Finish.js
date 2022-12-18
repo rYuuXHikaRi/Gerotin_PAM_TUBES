@@ -3,8 +3,13 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View,Image, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView, ScrollView} from 'react-native';
+import {useRoute} from "@react-navigation/core";
 
 const Finish = ({navigation}) => {
+  const route = useRoute();
+  const imageCover = route.params.imageCover;
+  const excersisesName = route.params.excersisesName;
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>

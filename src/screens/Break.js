@@ -11,10 +11,15 @@ const Break = ({ navigation}) => {
   const excersisesData = route.params.excersises;
   const [timeleft, setTimeLeft] = useState(startTimer);
 
+  const imageCover = route.params.imageCover;
+  const excersisesName = route.params.excersisesName;
+
   const StartTime = () => {
     setTimeout(() => {
       if (timeleft <= 0) {
         navigation.navigate("Countdown", {
+          imageCover: imageCover,
+          excersisesName: excersisesName,
           excersises: excersisesData,
           image: excersisesData[index + 1].image,
           name: excersisesData[index + 1].name,
@@ -50,6 +55,8 @@ const Break = ({ navigation}) => {
           style={styles.skipButton}
           onPress={() =>
             navigation.navigate("Countdown", {
+              imageCover: imageCover,
+              excersisesName: excersisesName,
               excersises: excersisesData,
               image: excersisesData[index + 1].image,
               name: excersisesData[index + 1].name,
