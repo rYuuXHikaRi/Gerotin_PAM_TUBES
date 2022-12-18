@@ -3,7 +3,6 @@ import {Text,View,Image,TextInput, Alert,StyleSheet,Pressable} from 'react-nativ
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import {connect} from 'react-redux';
 import{addAlarm} from "../../actions/alarm";
-import ReactNativeAN from 'react-native-alarm-notification';
  
 class TimePicker extends Component{
     constructor(props) {
@@ -59,7 +58,6 @@ class TimePicker extends Component{
         }
         console.log(alarmNotifData)
         this.props.add(alarmNotifData);
-        ReactNativeAN.scheduleAlarm(alarmNotifData)
         this.hideDateTimePicker();
     }
     render(){

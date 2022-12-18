@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Button, StyleSheet,FlatList, View,Text,Pressable } from 'react-native';
 import { connect } from 'react-redux';
 import { deleteAlarm } from '../../actions/alarm';
-import ReactNativeAN from 'react-native-alarm-notification';
 class ListReminder extends Component{
     keyExtractor=(item,index)=>index.toString();
     renderItem=({item})=>{
@@ -13,7 +12,6 @@ class ListReminder extends Component{
             </View>
             <Pressable style={styles.removeButton}
                     onPress={()=>{
-                        ReactNativeAN.deleteAlarm(item.alarmNotifData.id)
                         
                     
                         this.props.delete(item.value);

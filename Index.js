@@ -18,4 +18,3 @@
    </Provider>
  );
  
- AppRegistry.registerComponent(appName, () => RNRedux);
