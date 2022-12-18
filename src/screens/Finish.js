@@ -4,11 +4,12 @@ import { StyleSheet, Text, View,Image, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView, ScrollView} from 'react-native';
 import {useRoute} from "@react-navigation/core";
-import { Axios } from "axios";
+import  Axios  from "axios";
 
 
 const Finish = ({navigation}) => {
 
+  
   const route= useRoute()
   const imageCover = route.params.imageCover;
   const excersisesName = route.params.excersisesName;
@@ -27,11 +28,14 @@ const Finish = ({navigation}) => {
       time:time
     }
     console.log(data)
-    Axios.post('http://10.0.2.2:3000/history',data)
+    Axios.post('http://127.0.0.1:3000/history',data)
     .then(res=>{
       console.log('res:',res)
     })
+    navigation.navigate("Home")
   }
+
+
 
   return (
     <View style={styles.container}>
@@ -40,7 +44,7 @@ const Finish = ({navigation}) => {
       <Text style={styles.text}> Congratulations! </Text>
       <Text style={styles.text1}> You Have Completed The Workout </Text>
       </View>
-      <Pressable style={styles.textbox} onPress={() => {navigation.navigate("Home"),submit}}>
+      <Pressable style={styles.textbox} onPress={submit}>
         <Text style={{textAlign:'center', fontWeight:'bold', fontSize:25, color:'white'}}>Home</Text>
       </Pressable>
       <StatusBar style="auto"/>
