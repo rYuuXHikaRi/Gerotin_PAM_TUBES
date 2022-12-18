@@ -3,26 +3,32 @@ import {Text,View,Image, TextInput,TouchableOpacity, Pressable} from 'react-nati
 
 import Icon from "react-native-vector-icons/FontAwesome";
 import { firebaseAuthentication } from '../config/firebase';
-import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth'
+import { createUserWithEmailAndPassword, sendEmailVerification, signOut, updateProfile } from 'firebase/auth'
 
 
 const Register = ({navigation}) => {
-        
+    
+    const [username, setUsername] = useState("");
     const [email, setEmail] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState("");
     const [password, setPassword] = useState('');
 
     const onSignUpHandle = () => {
         if(email !== null && password !== null) {
             createUserWithEmailAndPassword(firebaseAuthentication,email, password)
-            .then(res => {
-                sendEmailVerification(firebaseAuthentication.currentUser)
-                .then(()=>{
-                    alert('Mohon verifikasi email anda');
-                    navigation.navigate("Login")
-                })
-                .catch((error)=>{
-                    alert(error.message)
-                })
+            .then((userCredential) => {
+                const user = userCredential.user;
+                    updateProfile(firebaseAuthentication.currentUser, {
+                        displayName: username,
+                    }).then(() => {
+                        signOut(firebaseAuthentication).then(() => {
+                            console.log("Regist sukses coy")
+                        }).catch((errors) => {
+                            alert(errors.message)
+                        })
+                    }).catch((error) => {
+                        alert(error.message);
+                    })
             })
             .catch((err) => {
                 alert(err)
@@ -75,6 +81,8 @@ const Register = ({navigation}) => {
                 }}>
                   
                     <TextInput 
+                        value={username}
+                        onChangeText={(e) => setUsername(e)}
                         placeholder="Username"
                         placeholderTextColor="#ffffff"
                         style={{paddingHorizontal:10,color:"white"}}
@@ -118,7 +126,8 @@ const Register = ({navigation}) => {
                 }}>
                    
                    <TextInput 
-                       
+                        value={phoneNumber}
+                        onChangeText={(e) => setPhoneNumber(e)}
                         placeholder="Phone"
                         placeholderTextColor="#ffffff"
                         style={{paddingHorizontal:10,color:"white"}}

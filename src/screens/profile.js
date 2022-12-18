@@ -4,20 +4,29 @@ import { StyleSheet, Text, View,Image,TextInput, Pressable } from 'react-native'
 import Icon1 from 'react-native-vector-icons/Ionicons';
 import { Entypo } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
+import {useRoute} from "@react-navigation/core";
 import { SafeAreaView, ScrollView} from 'react-native';
 
 import { firebaseAuthentication } from '../config/firebase'
 import { updatePassword } from 'firebase/auth';
 
 const Profile = ({navigation}) => {
-
+  const route = useRoute()
   const [newPassword, setNewPassword] = React.useState("");
+
+  const displayName = route.params.displayName;
+  const email = route.params.email;
+  const photoURL = route.params.photoURL;
 
   const handleChangePassword = () => {
     updatePassword(firebaseAuthentication.currentUser, newPassword)
     .then(() => {
       console.log("Sukses coy")
-      navigation.navigate("Home")
+      navigation.navigate("Home", {
+        displayName: displayName,
+        email: email,
+        photoURL: photoURL
+      })
     })
     .catch((error) => {
       alert(error.message)
@@ -46,7 +55,9 @@ const Profile = ({navigation}) => {
                 <Icon1 name="person" size={35} color="black" style={{marginTop:9}} />
                 <View style={styles.labelContainer}>
                     <Text style={styles.label}>Nama</Text>
-                    <View style={styles.textarea}></View>
+                    <View style={styles.textarea}>
+                      <Text>{displayName}</Text>
+                    </View>
                 </View>
             </View>
 
@@ -54,18 +65,12 @@ const Profile = ({navigation}) => {
                 <Entypo name="email" size={35} color="black" style={{marginTop:9}}/>
                 <View style={styles.labelContainer}>
                     <Text style={styles.label}>Email</Text>
-                    <View style={styles.textarea}></View>
-                </View>
-            </View>
-
-            <View style={styles.dataContainer}>
-                <FontAwesome5 name="phone-square" size={35} color="black" style={{marginTop:9}}/>
-                <View style={styles.labelContainer}>
-                    <Text style={styles.label}>Nomor HP</Text>
                     <View style={styles.textarea}>
+                      <Text>{email}</Text>
                     </View>
                 </View>
             </View>
+
         </View>
         <View style={styles.passwordContainer}>
             <Text style={styles.passwordTitle}>Ubah Kata Sandi</Text>
@@ -79,7 +84,10 @@ const Profile = ({navigation}) => {
                     <Pressable style={styles.okButton} onPress={handleChangePassword}>
                         <Text style={styles.okText}>Ok</Text>
                     </Pressable>
-                    <Pressable style={styles.cancelButton} onPress={() => navigation.navigate("Home")}>
+                    <Pressable style={styles.cancelButton} onPress={() => navigation.navigate("Home", {
+                      displayName: displayName,
+                      email: email
+                    })}>
                         <Text style={styles.cancelText}>Batal</Text>
                     </Pressable>
                 </View>
@@ -161,7 +169,9 @@ const styles = StyleSheet.create({
     height:30,
     width:250,
     backgroundColor:'white',
-    borderRadius:5
+    borderRadius:5,
+
+    padding: 5
   },
   label:{
     fontWeight:'bold',

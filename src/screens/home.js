@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, SafeAreaView, Image, ScrollView, Pressable } from 'react-native'
 import React, { useEffect, useState } from 'react'
+import {useRoute} from "@react-navigation/core";
 import Icon from 'react-native-vector-icons/Ionicons';
 import Icon2 from 'react-native-vector-icons/MaterialIcons';
 import Icon3 from 'react-native-vector-icons/FontAwesome';
@@ -16,22 +17,33 @@ import {firebaseAuthentication} from '../config/firebase'
 
 
 const Home = ({navigation}) => {
-        const[user, setUser] = useState(!!firebaseAuthentication.currentUser)
-        const signOutHandler = () => {
-            signOut(firebaseAuthentication)
-            .then(() => {
-                useEffect(() => {
-                    setUser(null)
-                }, [])
-            })
-            .catch((err) => console.log(err));
-        }
+    const route = useRoute();
+    const displayName = route.params.displayName;
+    const email = route.params.email;
+    const photoURL = route.params.photoURL;
+    
+    const signOutHandler = () => {
+        signOut(firebaseAuthentication)
+        .then(() => {
+            useEffect(() => {
+            setUser(null)
+            }, [])
+        }).catch((err) => console.log(err));
+    }
+
 console.log("from home: " + !!firebaseAuthentication.currentUser)
   return (
     <SafeAreaView style={SafeViewAndroid.AndroidSafeArea}>
         <View style={styles.container}>
             <View style={styles.header}>
-                <Pressable onPress={() => navigation.navigate("Profile")}>
+                <Pressable 
+                    onPress={() => navigation.navigate("Profile",{
+                                        displayName: displayName,
+                                        email: email,
+                                        photoURL: photoURL
+                                   })
+                            }
+                >
                     <Image
                         source={require("../../assets/profile.jpg")}
                         style={{
@@ -53,7 +65,7 @@ console.log("from home: " + !!firebaseAuthentication.currentUser)
                                 color: "#FF5151",
                                 fontSize: 20,
                                 fontWeight: "700" 
-                            }}>Selamat Datang, Tabibito </Text>
+                            }}>Selamat Datang, {displayName} </Text>
 
                 <Text style={{
                                 color: "#FF5151",

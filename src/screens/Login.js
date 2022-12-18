@@ -9,7 +9,7 @@ const Login = ({navigation}) => {
     
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
-
+    
     const handleLogin = () => {
         if(email !== null && password !== null) {
             signInWithEmailAndPassword(firebaseAuthentication, email, password)
