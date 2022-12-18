@@ -117,4 +117,5 @@ const Login = ({navigation}) => {
                 }}>Don't have account? create a new account</Text>
             </View>
         )
+            }
 export default Login;
