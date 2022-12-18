@@ -9,21 +9,20 @@ const Login = ({navigation}) => {
     
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
-    const [user, setUser] =  React.useState('');
 
     const handleLogin = () => {
         if(email !== null && password !== null) {
             signInWithEmailAndPassword(firebaseAuthentication, email, password)
-            .then(() => {
-                setUser(email)
-                navigation.navigate("Home")
+            .then((userCredential) => {
+                const user = userCredential.user;
+                navigation.navigate("AuthObserver")
             })
             .catch((err) => alert(err));
         }
     }
-   
+
+    console.log("from Login: " + !!firebaseAuthentication.currentUser)
         return(
-            
             <View style={{backgroundColor:"#414141",height:"100%"}}>
                 <Image source ={require('../../assets/icon.png')}
                     style={{width:100,height:100,marginLeft:146,marginTop:50}}

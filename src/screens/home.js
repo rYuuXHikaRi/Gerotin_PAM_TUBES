@@ -1,13 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, SafeAreaView, Image, ScrollView, Pressable } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Icon from 'react-native-vector-icons/Ionicons';
 import Icon2 from 'react-native-vector-icons/MaterialIcons';
 import Icon3 from 'react-native-vector-icons/FontAwesome';
 
 // Local components
 import SafeViewAndroid from '../../components/SafeViewAndroid';
-import Preferensi from './preferensi';
+import Preferensi from './Preferensi';
 import ScrollViewHorizontal from '../../components/ScrollViewHorizontal';
 import ScrollViewHorizontal2 from '../../components/ScrollViewHorizontal2';
 import { Component } from 'react/cjs/react.production.min';
@@ -15,22 +15,23 @@ import { signOut } from 'firebase/auth';
 import {firebaseAuthentication} from '../config/firebase'
 
 
-const Home = ({navigation,user,
-    setAuthState,
-    setUser}) => {
+const Home = ({navigation}) => {
+        const[user, setUser] = useState(!!firebaseAuthentication.currentUser)
         const signOutHandler = () => {
             signOut(firebaseAuthentication)
             .then(() => {
-                setUser(null);
-                setAuthState('login');
+                useEffect(() => {
+                    setUser(null)
+                }, [])
             })
             .catch((err) => console.log(err));
         }
+console.log("from home: " + !!firebaseAuthentication.currentUser)
   return (
     <SafeAreaView style={SafeViewAndroid.AndroidSafeArea}>
         <View style={styles.container}>
             <View style={styles.header}>
-                <Pressable onPress={() => navigation.navigate("user")}>
+                <Pressable onPress={() => navigation.navigate("Profile")}>
                     <Image
                         source={require("../../assets/profile.jpg")}
                         style={{
@@ -154,7 +155,7 @@ const Home = ({navigation,user,
                         <Text style={styles.navigatorText}>Preferensi</Text>
                     </Pressable>
 
-                    <Pressable onClick={signOutHandler}>
+                    <Pressable onPress={signOutHandler}>
                 
                         <Text style={styles.navigatorText}>Sign Out</Text>
                     </Pressable>

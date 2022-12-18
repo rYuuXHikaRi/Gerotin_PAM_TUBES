@@ -6,7 +6,24 @@ import { Entypo } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { SafeAreaView, ScrollView} from 'react-native';
 
+import { firebaseAuthentication } from '../config/firebase'
+import { updatePassword } from 'firebase/auth';
+
 const Profile = ({navigation}) => {
+
+  const [newPassword, setNewPassword] = React.useState("");
+
+  const handleChangePassword = () => {
+    updatePassword(firebaseAuthentication.currentUser, newPassword)
+    .then(() => {
+      console.log("Sukses coy")
+      navigation.navigate("Home")
+    })
+    .catch((error) => {
+      alert(error.message)
+    })
+  }
+
   return (
 
     <View style={styles.container}>
@@ -54,12 +71,12 @@ const Profile = ({navigation}) => {
             <Text style={styles.passwordTitle}>Ubah Kata Sandi</Text>
             <View style={styles.inputContainer}>
                 <View style={styles.inputArea}>
-                    <TextInput  editable  maxLength={40} style={styles.textInput} placeholder='  Password Lama'/>
-                    <TextInput  editable  maxLength={40} style={styles.textInput} placeholder='  Password Baru'/>
+                    <TextInput  editable  maxLength={40} style={styles.textInput} placeholder='  Password Lama' />
+                    <TextInput  editable  maxLength={40} style={styles.textInput} onChangeText={(e) => setNewPassword(e)} placeholder='  Password Baru' />
                     <TextInput  editable  maxLength={40} style={styles.textInput} placeholder='  Konfirmasi Password Baru'/>
                 </View>
                 <View style={styles.optionButton}>
-                    <Pressable style={styles.okButton} onPress={() => navigation.navigate("Home")}>
+                    <Pressable style={styles.okButton} onPress={handleChangePassword}>
                         <Text style={styles.okText}>Ok</Text>
                     </Pressable>
                     <Pressable style={styles.cancelButton} onPress={() => navigation.navigate("Home")}>
