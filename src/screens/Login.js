@@ -1,35 +1,30 @@
-
-import React,{useState} from 'react';
-import {Text,View,Image, TextInput} from 'react-native';
+import React from 'react';
+import {Text,View,Image, TextInput, Pressable} from 'react-native';
 import Icon from '@expo/vector-icons/AntDesign';
-
-const Login =
-    ({
-        user,
-        setAuthState,
-        setUser
-    })=>
-{
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
+import { signInWithEmailAndPassword} from 'firebase/auth';
+import { firebaseAuthentication } from '../config/firebase'
 
 
+
+const Login = ({navigation}) => {
+    
+    const [email, setEmail] = React.useState('');
+    const [password, setPassword] = React.useState('');
+    
     const handleLogin = () => {
         if(email !== null && password !== null) {
-            signInWithEmailAndPassword(auth, email, password)
-            .then(() => {
-                setUser(email)
-                setAuthState('home')
+            signInWithEmailAndPassword(firebaseAuthentication, email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                navigation.navigate("AuthObserver")
             })
             .catch((err) => alert(err));
         }
     }
-        const {navigate} = this.props.navigation
         return(
-            
             <View style={{backgroundColor:"#414141",height:"100%"}}>
-                <Image source ={require('../images/image.jpg')}
-                    style={{width:"100%",height:"25%"}}
+                <Image source ={require('../../assets/icon.png')}
+                    style={{width:100,height:100,marginLeft:146,marginTop:50}}
                 />
                 <View 
                 style={{
@@ -39,12 +34,12 @@ const Login =
                     border: 'bold',
                     borderWidth:4,
                     padding:30,
-                    margin:45
+                    margin:45,
+                    marginTop:110
                 }}>
                 <Text
                  style={{
                      fontSize:30,
-                     fontFamily:"Bold",
                      alignSelf:"center",
                      color:"#ff0000",
                      position: "relative",
@@ -53,10 +48,9 @@ const Login =
                 >LOGIN</Text>
                 
                 <View style={{
+                    width: "90%",
                     flexDirection:"row",
-                
-                    alignItems:"center",
-                    marginHorizontal:55,
+                    marginHorizontal: 15,
                     borderWidth:2,
                     marginTop:50,
                     paddingHorizontal:10,
@@ -67,18 +61,17 @@ const Login =
                 }}>
                     <Icon name="mail" color="#ff0000" size={24}/>
                     <TextInput placeholder="Email"
-                        style={{paddingHorizontal:10,color:"white"}}
+                               placeholderTextColor="#ffffff"
+                               onChangeText={(e) => setEmail(e)}
+                               style={{paddingHorizontal:10,color:"white"}}
 
                     />
-        
-          
-                    
-
                 </View>
                 <View style={{
+                    width: "90%",
                     flexDirection:"row",
                     alignItems:"center",
-                    marginHorizontal:55,
+                    marginHorizontal:15,
                     borderWidth:2,
                     marginTop:15,
                     paddingHorizontal:10,
@@ -88,17 +81,18 @@ const Login =
                 }}>
                     <Icon name="key" color="#ff0000" size={24}/>
                     <TextInput placeholder="Password"
-                        style={{paddingHorizontal:10,color:"white"}}
+                               placeholderTextColor="#ffffff"
+                               onChangeText={(e) => setPassword(e)}
+                               secureTextEntry
+                               style={{paddingHorizontal:10,color:"white"}}
                     />
-
-                    
-
                 </View>
 
                 </View>
                
 
-                <View style={{
+                <Pressable 
+                style={{
                     marginHorizontal:55,
                     alignItems:"center",
                     justifyContent:"center",
@@ -106,25 +100,21 @@ const Login =
                     backgroundColor:"#ff0000",
                     paddingVertical:10,
                     borderRadius:23
-                }}>
+                }}onPress={handleLogin}
+                >
                     <Text style={{
                         color:"black",
-                        fontFamily:"SemiBold"
                     }}>Login</Text>
-                </View>
+                </Pressable>
                 <Text 
                 
-                onPress={()=>navigate('Register')}
-                
+               // onClick={() => setAuthState('register')}
+                onPress={() => navigation.navigate("Register")}
                 style={{
                     alignSelf:"center",
                     color:"#fff",
-                    fontFamily:"SemiBold",
                     paddingVertical:30
                 }}>Don't have account? create a new account</Text>
             </View>
         )
-    }
-
-    export default Login
-
+export default Login;

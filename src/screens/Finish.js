@@ -1,4 +1,3 @@
-
 import React from "react";
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View,Image, Pressable } from 'react-native';
@@ -7,10 +6,8 @@ import { SafeAreaView, ScrollView} from 'react-native';
 import {useRoute} from "@react-navigation/core";
 import  Axios  from "axios";
 
-
 const Finish = ({navigation}) => {
 
-  
   const route= useRoute()
   const imageCover = route.params.imageCover;
   const excersisesName = route.params.excersisesName;
@@ -55,9 +52,7 @@ const Finish = ({navigation}) => {
   );
 }
 
-
 export default Finish;
-
 
 const styles = StyleSheet.create({
   container: {

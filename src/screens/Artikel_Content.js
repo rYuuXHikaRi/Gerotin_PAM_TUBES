@@ -4,6 +4,7 @@ import { StyleSheet, Text, View,Image } from 'react-native';
 import Icon1 from 'react-native-vector-icons/Ionicons';
 import { SafeAreaView, ScrollView} from 'react-native';
 
+
 const ArticleContent = ({route,navigation}) => {
   return (
 
@@ -61,9 +62,7 @@ const styles = StyleSheet.create({
     color:'white',
     fontSize:22,
     fontWeight:'bold',
-
     textAlign:'left',
     margin:30
-
   }
 })

@@ -142,7 +142,6 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 50,
     borderTopRightRadius: 50,
     width:390,
-
     height:"100%",
 
     paddingTop: 51,

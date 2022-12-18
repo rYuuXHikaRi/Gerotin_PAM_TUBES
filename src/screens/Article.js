@@ -40,7 +40,6 @@ const Article = ({navigation}) => {
   //   barView.push(view);
     
   // }
-
   return (
 
     <SafeAreaView style={SafeViewAndroid.AndroidSafeArea}>

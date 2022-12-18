@@ -1,20 +1,48 @@
-import React from 'react';
-import {Text,View,Image, TextInput,TouchableOpacity} from 'react-native';
+import React, {useState} from 'react';
+import {Text,View,Image, TextInput,TouchableOpacity, Pressable} from 'react-native';
 
 import Icon from "react-native-vector-icons/FontAwesome";
-//class based
+import { firebaseAuthentication } from '../config/firebase';
+import { createUserWithEmailAndPassword, sendEmailVerification, signOut, updateProfile } from 'firebase/auth'
 
-export default class Register extends React.Component{
 
-    render(){
-            const {navigate} = this.props.navigation
+const Register = ({navigation}) => {
+    
+    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState("");
+    const [password, setPassword] = useState('');
+
+    const onSignUpHandle = () => {
+        if(email !== null && password !== null) {
+            createUserWithEmailAndPassword(firebaseAuthentication,email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                    updateProfile(firebaseAuthentication.currentUser, {
+                        displayName: username,
+                    }).then(() => {
+                        signOut(firebaseAuthentication).then(() => {
+                            console.log("Regist sukses coy")
+                        }).catch((errors) => {
+                            alert(errors.message)
+                        })
+                    }).catch((error) => {
+                        alert(error.message);
+                    })
+            })
+            .catch((err) => {
+                alert(err)
+            })
+        }
+    }
+
         return(
             <View style={{backgroundColor:"#414141",height:"100%"}}>
               <TouchableOpacity onPress={() => navigation.navigate("Login")}>
           <Icon name="arrow-left" size={30} style={{ color: "white" }} />
         </TouchableOpacity> 
-                <Image source ={require('../images/image.jpg')}
-                    style={{width:"100%",height:"25%"}}
+                <Image source ={require('../../assets/icon.png')}
+                    style={{width:150,height:150,marginLeft:116,marginTop:10}}
                 />
 
         
@@ -27,32 +55,34 @@ export default class Register extends React.Component{
                     borderWidth:4,
                     padding:30,
                     marginBottom :0,
-                    marginTop:10,
-                    marginLeft:45,
-                    marginRight:45
+                    marginTop:50,
+                    marginLeft:35,
+                    marginRight:35
                 }}>
                 <Text
                  style={{
                      fontSize:30,
-                     fontFamily:"Bold",
                      alignSelf:"center",
                      color:"#ff0000",
                      position: "relative",
                       }}
                 >REGISTER</Text>
                 <View style={{
-                    flexDirection:"row",
-                    alignItems:"center",
-                    marginHorizontal:55,
-                    borderWidth:2,
-                    marginTop:50,
-                    paddingHorizontal:10,
-                    borderColor:"#ff0000",
-                    borderRadius:23,
-                    paddingVertical:2
+                      width: "90%",
+                      flexDirection:"row",
+                      alignItems:"center",
+                      marginHorizontal:15,
+                      borderWidth:2,
+                      marginTop:15,
+                      paddingHorizontal:10,
+                      borderColor:"#ff0000",
+                      borderRadius:23,
+                      paddingVertical:2
                 }}>
                   
                     <TextInput 
+                        value={username}
+                        onChangeText={(e) => setUsername(e)}
                         placeholder="Username"
                         placeholderTextColor="#ffffff"
                         style={{paddingHorizontal:10,color:"white"}}
@@ -60,39 +90,44 @@ export default class Register extends React.Component{
 
                 </View>
                 <View style={{
-                    flexDirection:"row",
-                    alignItems:"center",
-                    marginHorizontal:55,
-                    borderWidth:2,
-                    marginTop:15,
-                    paddingHorizontal:10,
-                    borderColor:"#ff0000",
-                    borderRadius:23,
-                    paddingVertical:2
+                     width: "90%",
+                     flexDirection:"row",
+                     alignItems:"center",
+                     marginHorizontal:15,
+                     borderWidth:2,
+                     marginTop:15,
+                     paddingHorizontal:10,
+                     borderColor:"#ff0000",
+                     borderRadius:23,
+                     paddingVertical:2
                 }}>
                    
                    <TextInput 
-                        secureTextEntry
+                        value={email}
+                        onChangeText={(e) => setEmail(e)}
                         placeholder="Email"
                         placeholderTextColor="#ffffff"
                         style={{paddingHorizontal:10,color:"white"}}
+                        
                     />
 
                 </View>
                 <View style={{
-                    flexDirection:"row",
-                    alignItems:"center",
-                    marginHorizontal:55,
-                    borderWidth:2,
-                    marginTop:15,
-                    paddingHorizontal:10,
-                    borderColor:"#ff0000",
-                    borderRadius:23,
-                    paddingVertical:2
+                     width: "90%",
+                     flexDirection:"row",
+                     alignItems:"center",
+                     marginHorizontal:15,
+                     borderWidth:2,
+                     marginTop:15,
+                     paddingHorizontal:10,
+                     borderColor:"#ff0000",
+                     borderRadius:23,
+                     paddingVertical:2
                 }}>
                    
                    <TextInput 
-                        secureTextEntry
+                        value={phoneNumber}
+                        onChangeText={(e) => setPhoneNumber(e)}
                         placeholder="Phone"
                         placeholderTextColor="#ffffff"
                         style={{paddingHorizontal:10,color:"white"}}
@@ -101,36 +136,40 @@ export default class Register extends React.Component{
 
                 </View>
                 <View style={{
-                    flexDirection:"row",
-                    alignItems:"center",
-                    marginHorizontal:55,
-                    borderWidth:2,
-                    marginTop:15,
-                    paddingHorizontal:10,
-                    borderColor:"#ff0000",
-                    borderRadius:23,
-                    paddingVertical:2
+                     width: "90%",
+                     flexDirection:"row",
+                     alignItems:"center",
+                     marginHorizontal:15,
+                     borderWidth:2,
+                     marginTop:15,
+                     paddingHorizontal:10,
+                     borderColor:"#ff0000",
+                     borderRadius:23,
+                     paddingVertical:2
                 }}>
                    
                    <TextInput 
+                        onChangeText={(e) => setPassword(e)}
                         secureTextEntry
                         placeholder="Password"
                         placeholderTextColor="#ffffff"
                         style={{paddingHorizontal:10,color:"white"}}
+                        
                     />
                     
 
                 </View>
                 <View style={{
-                    flexDirection:"row",
-                    alignItems:"center",
-                    marginHorizontal:55,
-                    borderWidth:2,
-                    marginTop:15,
-                    paddingHorizontal:10,
-                    borderColor:"#ff0000",
-                    borderRadius:23,
-                    paddingVertical:2
+                     width: "90%",
+                     flexDirection:"row",
+                     alignItems:"center",
+                     marginHorizontal:15,
+                     borderWidth:2,
+                     marginTop:15,
+                     paddingHorizontal:10,
+                     borderColor:"#ff0000",
+                     borderRadius:23,
+                     paddingVertical:2
                 }}>
                    
                    <TextInput 
@@ -138,12 +177,13 @@ export default class Register extends React.Component{
                         placeholder="Confirm Password"
                         placeholderTextColor="#ffffff"
                         style={{paddingHorizontal:10,color:"white"}}
+                        
                     />
                     
 
                 </View>
                 </View>
-                <View style={{
+                <Pressable  style={{
                     marginHorizontal:55,
                     alignItems:"center",
                     justifyContent:"center",
@@ -154,21 +194,18 @@ export default class Register extends React.Component{
                 }}>
                     <Text style={{
                         color:"black",
-                        fontFamily:"SemiBold"
                         
-                    }}onPress={()=>navigate('Login')}>Create Account</Text>
-                </View>
+                    }}onPress={onSignUpHandle}>Create Account</Text>
+                </Pressable>
                 <Text 
-                
-                onPress={()=>navigate('Login')}
-                
+                onPress={() => navigation.navigate("Login")}
                 style={{
                     alignSelf:"center",
                     color:"#fff",
-                    fontFamily:"SemiBold",
                     paddingVertical:30
                 }}>Already have a account?Login</Text>
             </View>
         )
-    }
 }
+
+export default Register;

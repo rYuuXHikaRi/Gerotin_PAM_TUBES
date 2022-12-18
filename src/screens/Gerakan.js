@@ -1,4 +1,3 @@
-
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import {
@@ -78,7 +77,6 @@ const Gerakan = ({ navigation }) => {
 };
 export default Gerakan;
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -155,5 +153,4 @@ const styles = StyleSheet.create({
     alignItems: "center",
     fontSize: "40",
   },
-
 });
