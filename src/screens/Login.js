@@ -1,10 +1,29 @@
-import React from 'react';
+
+import React,{useState} from 'react';
 import {Text,View,Image, TextInput} from 'react-native';
 import Icon from '@expo/vector-icons/AntDesign';
 
-export default class Login extends React.Component{
+const Login =
+    ({
+        user,
+        setAuthState,
+        setUser
+    })=>
+{
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
 
-    render(){
+
+    const handleLogin = () => {
+        if(email !== null && password !== null) {
+            signInWithEmailAndPassword(auth, email, password)
+            .then(() => {
+                setUser(email)
+                setAuthState('home')
+            })
+            .catch((err) => alert(err));
+        }
+    }
         const {navigate} = this.props.navigation
         return(
             
@@ -106,4 +125,6 @@ export default class Login extends React.Component{
             </View>
         )
     }
-}
+
+    export default Login
+

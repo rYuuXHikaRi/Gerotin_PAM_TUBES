@@ -1,25 +1,46 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
+import axios from 'axios';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View,Image, Pressable, ImageBackground } from 'react-native';
+import {StyleSheet, Text, View,Image, Pressable, ImageBackground } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView, ScrollView} from 'react-native';
 
 // Local components
 import SafeViewAndroid from '../../components/SafeViewAndroid';
 
+import { TouchableOpacity } from 'react-native-gesture-handler';
+
 const Article = ({navigation}) => {
-  var barView=[];
-  for (let i = 0; i < 8; i++) {
-    var view =
-    <View style={styles.historybox}>
-      <Image source={require('../../assets/artikel.jpg')}  style={{ width: 100, height: 100,margin:10,marginRight:40,justifyContent:'center' }}/>
-      <View style={styles.textbarcontainer}>
-        <Text style={styles.textbar}>Pentingnya Berolahraga Saat Malam Hari</Text>
-      </View>
-   </View>
-    barView.push(view);
+  const [data,setData]=useState()
+  const getData = async()=>{
+    try {
+      const resp=await axios.get('https://newsapi.org/v2/top-headlines',{
+        params:{
+          country:'us',
+          category:'sports',
+          apiKey:'d62678f052e449ec967445a58148f9c0'
+        }
+      });
+      setData(resp.data.articles)
+      
+    } catch (error) {
+      alert(error.message)
+      
+    }
+  };
+  useEffect(()=>{
+    getData()
+
+  },[])
+
+  // var barView=[];
+  // for (let i = 0; i < 8; i++) {
+  //   var view =
+
+  //   barView.push(view);
     
-  }
+  // }
+
   return (
 
     <SafeAreaView style={SafeViewAndroid.AndroidSafeArea}>
@@ -43,7 +64,21 @@ const Article = ({navigation}) => {
         
           <View style={styles.historycontainer}>
             <ScrollView>
-              {barView}
+              {data &&data.map((item,i)=>{
+                return <>
+                <TouchableOpacity
+                  onPress={()=>navigation.navigate("KontenArtikel",{data:item})}
+                  >
+                    <View style={styles.historybox}>
+                    <Image source={{uri:item.urlToImage}}  style={{ width: 100, height: 100,margin:10,marginRight:40,justifyContent:'center' }}/>
+                    <View style={styles.textbarcontainer}>
+                      <Text style={styles.textbar}>{item.title}</Text>
+                    </View>
+                  </View>
+              </TouchableOpacity>
+              </>
+
+              }) }
             </ScrollView>  
           </View>
           <StatusBar style="auto" />

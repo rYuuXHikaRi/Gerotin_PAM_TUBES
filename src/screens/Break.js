@@ -1,3 +1,4 @@
+
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import React, { useEffect, useState } from "react";
@@ -130,3 +131,4 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 });
+
