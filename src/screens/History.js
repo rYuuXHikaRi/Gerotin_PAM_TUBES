@@ -1,15 +1,16 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View,Image, Pressable } from 'react-native';
+import { StyleSheet, Text, View,Image, Pressable,Button } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView, ScrollView} from 'react-native';
 
 // Local components
 import SafeViewAndroid from '../../components/SafeViewAndroid';
 
+
 const History = ({navigation}) => {
   var barView=[];
-  for (let i = 0; i < 8; i++) {
+  for (let i = 0; i < 3; i++) {
     var view =
     <View style={styles.historybox}>
       <Image source={require('../../assets/dada.jpg')}  style={{ width: 100, height: 80,margin:10,marginRight:40 }}/>
@@ -37,6 +38,7 @@ const History = ({navigation}) => {
         <View style={styles.historycontainer}>
           <ScrollView>
             {barView}
+            <Button title="Add History" color="black" />
           </ScrollView> 
         </View>
         <StatusBar style="auto" />
@@ -92,7 +94,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 50,
     borderTopRightRadius: 50,
     width:390,
-
+    height:"100%",
     paddingTop: 51,
     paddingLeft: 24,
     paddingRight: 24,
