@@ -5,9 +5,15 @@ import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView, ScrollView} from 'react-native';
 import {useRoute} from "@react-navigation/core";
 import { Axios } from "axios";
-const Finish = ({navigation,route}) => {
+
+
+const Finish = ({navigation}) => {
+
+  const route= useRoute()
   const imageCover = route.params.imageCover;
   const excersisesName = route.params.excersisesName;
+
+  
   var date = new Date().getDate();
   var month = new Date().getMonth();
   var year = new Date().getFullYear();
