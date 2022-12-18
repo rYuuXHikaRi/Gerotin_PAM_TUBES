@@ -15,15 +15,24 @@ const Countdown = ({ navigation }) => {
 
   const imageCover = route.params.imageCover;
   const excersisesName = route.params.excersisesName;
+  const displayName = route.params.displayName;
+  const email = route.params.email;
+  const photoURL = route.params.photoURL;
 
   const nextExcersises = () => {
     if (index == 6) {
       navigation.navigate("Finish",{
         imageCover: imageCover,
-        excersisesName: excersisesName
+        excersisesName: excersisesName,
+        displayName: displayName,
+        email: email,
+        photoURL: photoURL,
       })
     } else {
         navigation.navigate("Break", {
+        displayName: displayName,
+        email: email,
+        photoURL: photoURL,
         imageCover: imageCover,
         excersisesName: excersisesName,
         excersises: excersisesData,
@@ -41,6 +50,9 @@ const Countdown = ({ navigation }) => {
                 backgroundColor: '#6e6d6d'}
     } else if(index >= 0){
         navigation.navigate("Countdown", {
+        displayName: displayName,
+        email: email,
+        photoURL: photoURL,
         imageCover: imageCover,
         excersisesName : excersisesName,
         excersises: excersisesData,

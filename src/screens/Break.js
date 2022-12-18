@@ -13,19 +13,25 @@ const Break = ({ navigation}) => {
 
   const imageCover = route.params.imageCover;
   const excersisesName = route.params.excersisesName;
+  const displayName = route.params.displayName;
+  const email = route.params.email;
+  const photoURL = route.params.photoURL;
 
   const StartTime = () => {
     setTimeout(() => {
       if (timeleft <= 0) {
         navigation.navigate("Countdown", {
+          displayName: displayName,
+          email: email,
+          photoURL: photoURL,
           imageCover: imageCover,
           excersisesName: excersisesName,
           excersises: excersisesData,
-          image: excersisesData[index + 1].image,
-          name: excersisesData[index + 1].name,
-          set: excersisesData[index + 1].sets,
-          time: excersisesData[index + 1].time,
-          index: index + 1,
+          image: excersisesData[index].image,
+          name: excersisesData[index].name,
+          set: excersisesData[index].sets,
+          time: excersisesData[index].time,
+          index: index,
         });
         clearTimeout(timer);
       }
@@ -55,14 +61,17 @@ const Break = ({ navigation}) => {
           style={styles.skipButton}
           onPress={() =>
             navigation.navigate("Countdown", {
+              displayName: displayName,
+              email: email,
+              photoURL: photoURL,
               imageCover: imageCover,
               excersisesName: excersisesName,
               excersises: excersisesData,
-              image: excersisesData[index + 1].image,
-              name: excersisesData[index + 1].name,
-              set: excersisesData[index + 1].sets,
-              time: excersisesData[index + 1].time,
-              index: index + 1,
+              image: excersisesData[index].image,
+              name: excersisesData[index].name,
+              set: excersisesData[index].sets,
+              time: excersisesData[index].time,
+              index: index,
             })
           }
         >

@@ -16,7 +16,6 @@ import { Component } from 'react/cjs/react.production.min';
 import { signOut } from 'firebase/auth';
 import {firebaseAuthentication} from '../config/firebase'
 import WorkOut from "../data/WorkOut";
-import { useRoute } from "@react-navigation/native";
 
 
 
@@ -148,6 +147,9 @@ console.log("from home: " + !!firebaseAuthentication.currentUser)
                                                               excersises: item.excersises,
                                                               id: item.id,
                                                               name: item.name,
+                                                              displayName: displayName,
+                                                              email: email,
+                                                              photoURL: photoURL
                                                             })
                                               }   
                                               imageUri={{ uri: item.image }}
@@ -157,29 +159,7 @@ console.log("from home: " + !!firebaseAuthentication.currentUser)
                         </ScrollView>    
                     </View>
                 </View>
-
-        <View style={styles.contentBox}>
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <View>
-              <Text style={styles.contentText}>Latihan Terakhir</Text>
-              <Image
-                source={require("../../assets/Home/latestExercise.jpg")}
-                style={{
-                  width: 87,
-                  height: 80,
-                  borderRadius: 15,
-                  marginTop: 5,
-                }}
-              />
-
             </View>
-
             <View style={styles.navigatorBox}>
                 <View style={{
                                 flexDirection: "row",
@@ -208,9 +188,8 @@ console.log("from home: " + !!firebaseAuthentication.currentUser)
                         <Text style={styles.navigatorText}>Sign Out</Text>
                     </Pressable>
                 </View>
-            </View>   
-
-        </View> 
+            </View>               
+        </View>           
         <StatusBar style="auto" />            
     </SafeAreaView>
   )

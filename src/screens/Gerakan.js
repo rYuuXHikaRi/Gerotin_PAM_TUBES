@@ -17,6 +17,9 @@ const Gerakan = ({ navigation }) => {
   const excersisesData = route.params.excersises;
   const imageCover = route.params.image;
   const excersisesName = route.params.name;
+  const displayName = route.params.displayName;
+  const email = route.params.email;
+  const photoURL = route.params.photoURL;
 
 
   return (
@@ -59,6 +62,9 @@ const Gerakan = ({ navigation }) => {
         <Pressable 
           style={styles.startBar}
           onPress={() => navigation.navigate("Countdown", {
+            displayName: displayName,
+            email: email,
+            photoURL: photoURL,
             imageCover: imageCover,
             excersisesName: excersisesName,
             excersises: excersisesData,
