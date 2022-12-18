@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View,Image, Pressable,Button } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -9,21 +9,22 @@ import Axios from 'axios';
 import SafeViewAndroid from '../../components/SafeViewAndroid';
 
 
-const History = ({navigation}) => {
-  const [name,setName]=useState("")
-  const [image,setImage]=useState("")
+const History = ({navigation,nama,gambar}) => {
+  const [historyItem,serHistoryItem]=useState([])
 
-  const submit =()=>{
-    const data={
-      name:"Nama Lengkap",
-      image:"gambar"
-    }
-    console.log(data)
-    Axios.post('http://10.0.2.2:3000/history',data)
+  useEffect(()=>{
+    getData();
+
+  },[])
+
+  const getData=()=>{
+    Axios.get('http://10.0.2.2:3000/history')
     .then(res=>{
       console.log('res:',res)
+      serHistoryItem(res.data)
     })
   }
+
   var barView=[];
   for (let i = 0; i < 3; i++) {
     var view =
@@ -52,7 +53,18 @@ const History = ({navigation}) => {
 
         <View style={styles.historycontainer}>
           <ScrollView>
-            <Button title="Add History" color="black" onPress={submit} />
+            {historyItem.map(item=>{
+
+              return<View style={styles.historybox}>
+              <Image source={require('../../assets/dada.jpg')}  style={{ width: 100, height: 80,margin:10,marginRight:40 }}/>
+              <View style={styles.textbarcontainer}>
+                <Text style={styles.textbar}>{item.name}</Text>
+                <Text style={styles.textbar}>{item.image}</Text>
+              </View>
+          </View>
+            })}
+
+            <Button title="Add History" color="black" />
           </ScrollView> 
         </View>
         <StatusBar style="auto" />

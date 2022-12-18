@@ -4,11 +4,28 @@ import { StyleSheet, Text, View,Image, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView, ScrollView} from 'react-native';
 import {useRoute} from "@react-navigation/core";
-
-const Finish = ({navigation}) => {
-  const route = useRoute();
+import { Axios } from "axios";
+const Finish = ({navigation,route}) => {
   const imageCover = route.params.imageCover;
   const excersisesName = route.params.excersisesName;
+  var date = new Date().getDate();
+  var month = new Date().getMonth();
+  var year = new Date().getFullYear();
+  var hours = new Date().getHours();
+  var min = new Date().getMinutes();
+  var time = date +'-'+month+'-'+year+' '+hours+':'+min
+  const submit =()=>{
+    const data={
+      name:imageCover,
+      image:excersisesName,
+      time:time
+    }
+    console.log(data)
+    Axios.post('http://10.0.2.2:3000/history',data)
+    .then(res=>{
+      console.log('res:',res)
+    })
+  }
 
   return (
     <View style={styles.container}>
