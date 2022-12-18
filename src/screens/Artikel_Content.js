@@ -4,22 +4,18 @@ import { StyleSheet, Text, View,Image } from 'react-native';
 import Icon1 from 'react-native-vector-icons/Ionicons';
 import { SafeAreaView, ScrollView} from 'react-native';
 
-const ArticleContent = ({navigation}) => {
+const ArticleContent = ({route,navigation}) => {
   return (
 
     <View style={styles.container}>
       <View style={styles.header}>
-        <Image source={require('../../assets/artikel.jpg')}  style={{ width: "100%", height: 310,position:'relative' }}/>
-        <View style={styles.title}>
-          <Text style={styles.titleText}>Pentingnya Pemanasan Sebelum Olahraga</Text>
-        </View>
+        <Image source={{uri:route.params.data.urlToImage}}  style={{ width: "100%", height: "110%",position:'relative' }}/>
         <Icon1 name="arrow-back-circle" size={35} color="#FF5151" style={{position:'absolute'}}/>
       </View>
       <ScrollView style={styles.historycontainer}>  
-        <Text style={styles.isi}> Pemanasan sebelum berolahraga adalah hal yang penting untuk dilakukan, namun tidak sedikit orang yang sering mengabaikannya. Kamu mungkin berpikir bahwa tubuh bisa langsung berolahraga tanpa melakukan pemanasan terlebih dahulu. Meskipun kamu sudah terampil berolahraga, tubuh tetap perlu menyesuaikan diri sebelum melakukan aktivitas yang lebih berat daripada biasanya.
-          Tujuan utama melakukan pemanasan sebelum olahraga adalah agar tubuh tidak kaget saat melakukan aktivitas fisik yang berat. Coba bayangkan, otot yang masih dalam kondisi dingin dan rileks, tiba-tiba digunakan untuk berlari kencang. Hal ini meningkatkan risiko mengalami cedera ringan atau kram saat berolahraga.
-          Oleh sebab itu, lakukan pemanasan terlebih dahulu setidaknya selama 10-15 menit sebelum berolahraga untuk mendapatkan manfaat berikut: Mencegah Cedera
-          Pemanasan membuat otot menjadi lebih lentur dan tidak kaku lagi, sehingga ketika melakukan gerakan-gerakan olahraga yang cukup ekstrem, seperti mengangkat beban berat
+
+        <Text style={styles.titleText}>{route.params.data.title}</Text>
+        <Text style={styles.isi}> {route.params.data.description}
         </Text>
       </ScrollView>
       <StatusBar style="auto"/>
@@ -37,7 +33,7 @@ const styles = StyleSheet.create({
     marginTop:20
   },
   header :{
-    height:"35%",
+    height:"50%",
     width:"100%",
     marginTop:2,
     textAlign:'left'
@@ -65,6 +61,7 @@ const styles = StyleSheet.create({
     color:'white',
     fontSize:22,
     fontWeight:'bold',
-    textAlign:'left'
+    textAlign:'left',
+    margin:30
   }
 })
