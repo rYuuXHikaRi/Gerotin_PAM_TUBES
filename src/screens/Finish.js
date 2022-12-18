@@ -20,17 +20,18 @@ const Finish = ({navigation}) => {
   var year = new Date().getFullYear();
   var hours = new Date().getHours();
   var min = new Date().getMinutes();
-  var time = date +'-'+month+'-'+year+' '+hours+':'+min
+  var timeExercises = date +'-'+month+'-'+year+' '+hours+':'+min
   const submit =()=>{
     const data={
-      name:imageCover,
-      image:excersisesName,
-      time:time
+      name:excersisesName,
+      image:imageCover,
+      time:timeExercises
     }
     console.log(data)
-    Axios.post('http://127.0.0.1:3000/history',data)
+    Axios.post('http://10.0.2.2:3000/history',data)
     .then(res=>{
       console.log('res:',res)
+  
     })
     navigation.navigate("Home")
   }
