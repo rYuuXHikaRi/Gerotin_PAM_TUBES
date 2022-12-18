@@ -1,3 +1,4 @@
+
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, SafeAreaView, Image, ScrollView, Pressable } from 'react-native'
 import React, { useEffect, useState } from 'react'
@@ -14,6 +15,7 @@ import ScrollViewHorizontal2 from '../../components/ScrollViewHorizontal2';
 import { Component } from 'react/cjs/react.production.min';
 import { signOut } from 'firebase/auth';
 import {firebaseAuthentication} from '../config/firebase'
+import WorkOut from "../data/WorkOut";
 
 
 const Home = ({navigation}) => {
@@ -21,6 +23,7 @@ const Home = ({navigation}) => {
     const displayName = route.params.displayName;
     const email = route.params.email;
     const photoURL = route.params.photoURL;
+    const WorkOutData = WorkOut;
     
     const signOutHandler = () => {
         signOut(firebaseAuthentication)
@@ -135,10 +138,21 @@ console.log("from home: " + !!firebaseAuthentication.currentUser)
                     <Text style={styles.contentText}>Daftar Menu Latihan</Text>
                     <View style={{width: 380, height:222, marginLeft: -18}}>
                         <ScrollView horizontal={true}>
-                            <ScrollViewHorizontal2 action={() => navigation.navigate("Gerakan")} imageUri={require("../../assets/Home/latestExercise.jpg")}/>
-                            <ScrollViewHorizontal2 action={() => navigation.navigate("Gerakan")} imageUri={require("../../assets/Home/latestExercise.jpg")}/>
-                            <ScrollViewHorizontal2 action={() => navigation.navigate("Gerakan")} imageUri={require("../../assets/Home/latestExercise.jpg")}/>
-                            <ScrollViewHorizontal2 action={() => navigation.navigate("Gerakan")} imageUri={require("../../assets/Home/latestExercise.jpg")}/>
+                            {WorkOutData.map((item, key) => {
+                                return (
+                                          <ScrollViewHorizontal2
+                                              key={key}
+                                              action={() => navigation.navigate("Gerakan", {
+                                                              image: item.image,
+                                                              excersises: item.excersises,
+                                                              id: item.id,
+                                                              name: item.name,
+                                                            })
+                                              }   
+                                              imageUri={{ uri: item.image }}
+                                            />
+                                );
+                            })}
                         </ScrollView>    
                     </View>
                 </View>

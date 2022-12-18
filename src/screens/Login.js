@@ -5,6 +5,7 @@ import { signInWithEmailAndPassword} from 'firebase/auth';
 import { firebaseAuthentication } from '../config/firebase'
 
 
+
 const Login = ({navigation}) => {
     
     const [email, setEmail] = React.useState('');
@@ -20,8 +21,6 @@ const Login = ({navigation}) => {
             .catch((err) => alert(err));
         }
     }
-
-    console.log("from Login: " + !!firebaseAuthentication.currentUser)
         return(
             <View style={{backgroundColor:"#414141",height:"100%"}}>
                 <Image source ={require('../../assets/icon.png')}
@@ -118,5 +117,4 @@ const Login = ({navigation}) => {
                 }}>Don't have account? create a new account</Text>
             </View>
         )
-}
 export default Login;

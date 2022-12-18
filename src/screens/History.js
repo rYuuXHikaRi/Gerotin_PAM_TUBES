@@ -1,15 +1,44 @@
-import React from 'react';
+import React,{useEffect, useState} from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View,Image, Pressable } from 'react-native';
+import { StyleSheet, Text, View,Image, Pressable,Button } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView, ScrollView} from 'react-native';
+import Axios, { all } from 'axios';
 
 // Local components
 import SafeViewAndroid from '../../components/SafeViewAndroid';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const History = ({navigation}) => {
+
+const History = ({navigation,nama,gambar}) => {
+  const [historyItem,serHistoryItem]=useState([])
+
+  useEffect(()=>{
+    getData();
+
+  },[])
+
+  const getData=()=>{
+    Axios.get('http://10.0.2.2:3000/history')
+    .then(res=>{
+      console.log('res:',res)
+      serHistoryItem(res.data)
+    })
+  }
+
+  const deleteData=()=>{
+    for (let i = 1; i <= historyItem.length; i++) {
+      const address='http://10.0.2.2:3000/history/'+i.toString()
+      Axios.delete(address)
+      getData()
+    }
+      
+
+
+  }
+
   var barView=[];
-  for (let i = 0; i < 8; i++) {
+  for (let i = 0; i < 3; i++) {
     var view =
     <View style={styles.historybox}>
       <Image source={require('../../assets/dada.jpg')}  style={{ width: 100, height: 80,margin:10,marginRight:40 }}/>
@@ -36,7 +65,28 @@ const History = ({navigation}) => {
 
         <View style={styles.historycontainer}>
           <ScrollView>
-            {barView}
+          <TouchableOpacity onPress={deleteData}
+                      style={{
+                        backgroundColor:"black",
+                        color:"white",
+                        height:30,
+                        width:130,
+                        borderRadius:10,
+                        display:'flex',
+                        justifyContent:"center",
+                      }}>
+            <Text style={{color:"white" ,fontWeight:"bold",textAlign:"center"}}>Clear History</Text>
+          </TouchableOpacity>
+            {historyItem.map(item=>{
+
+              return<View style={styles.historybox}>
+              <Image source={{uri:item.image}}  style={{ width: 100, height: 80,margin:10,marginRight:40 }}/>
+              <View style={styles.textbarcontainer}>
+                <Text style={styles.textbar}>{item.name}</Text>
+                <Text style={styles.textbar}>{item.time}</Text>
+              </View>
+          </View>
+            })}
           </ScrollView> 
         </View>
         <StatusBar style="auto" />
@@ -92,6 +142,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 50,
     borderTopRightRadius: 50,
     width:390,
+    height:"100%",
 
     paddingTop: 51,
     paddingLeft: 24,

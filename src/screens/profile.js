@@ -55,6 +55,7 @@ const Profile = ({navigation}) => {
                 <Icon1 name="person" size={35} color="black" style={{marginTop:9}} />
                 <View style={styles.labelContainer}>
                     <Text style={styles.label}>Nama</Text>
+
                     <View style={styles.textarea}>
                       <Text>{displayName}</Text>
                     </View>
@@ -70,12 +71,12 @@ const Profile = ({navigation}) => {
                     </View>
                 </View>
             </View>
-
         </View>
         <View style={styles.passwordContainer}>
             <Text style={styles.passwordTitle}>Ubah Kata Sandi</Text>
             <View style={styles.inputContainer}>
                 <View style={styles.inputArea}>
+
                     <TextInput  editable  maxLength={40} style={styles.textInput} placeholder='  Password Lama' />
                     <TextInput  editable  maxLength={40} style={styles.textInput} onChangeText={(e) => setNewPassword(e)} placeholder='  Password Baru' />
                     <TextInput  editable  maxLength={40} style={styles.textInput} placeholder='  Konfirmasi Password Baru'/>
