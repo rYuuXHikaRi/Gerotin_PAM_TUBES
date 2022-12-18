@@ -34,7 +34,7 @@ const Finish = ({navigation,route}) => {
       <Text style={styles.text}> Congratulations! </Text>
       <Text style={styles.text1}> You Have Completed The Workout </Text>
       </View>
-      <Pressable style={styles.textbox} onPress={() => {navigation.navigate("Home")}}>
+      <Pressable style={styles.textbox} onPress={() => {navigation.navigate("Home"),submit}}>
         <Text style={{textAlign:'center', fontWeight:'bold', fontSize:25, color:'white'}}>Home</Text>
       </Pressable>
       <StatusBar style="auto"/>
