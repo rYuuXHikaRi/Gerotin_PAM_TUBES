@@ -231,13 +231,6 @@ export default [
         sets:10,
         time:7,
       },
-      {
-        id:"27",
-        image:"https://64.media.tumblr.com/fc7417698e779d83c39fa6d68950a714/tumblr_inline_mrukoaWl0f1qz4rgp.gif",
-        name:"Jasmine sit-up",
-        sets:10,
-        time:7,
-      },
 
     ]
   },

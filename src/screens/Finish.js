@@ -1,9 +1,10 @@
+import React from "react";
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View,Image } from 'react-native';
+import { StyleSheet, Text, View,Image, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView, ScrollView} from 'react-native';
 
-const Finish = () => {
+const Finish = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -11,9 +12,9 @@ const Finish = () => {
       <Text style={styles.text}> Congratulations! </Text>
       <Text style={styles.text1}> You Have Completed The Workout </Text>
       </View>
-      <View style={styles.textbox}>
+      <Pressable style={styles.textbox} onPress={() => {navigation.navigate("Home")}}>
         <Text style={{textAlign:'center', fontWeight:'bold', fontSize:25, color:'white'}}>Home</Text>
-      </View>
+      </Pressable>
       <StatusBar style="auto"/>
     </View>
   );
