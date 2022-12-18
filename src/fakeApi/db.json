@@ -1,22 +1,17 @@
 {
-  "posts": [
+  "history": [
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "name": "name",
+      "image": "url"
     },
     {
       "id": 2
-    }
-  ],
-  "comments": [
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "name": "Nama Lengkap",
+      "image": "gambar",
+      "id": 3
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }

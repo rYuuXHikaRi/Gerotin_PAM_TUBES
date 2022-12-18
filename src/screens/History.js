@@ -1,14 +1,29 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View,Image, Pressable,Button } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView, ScrollView} from 'react-native';
+import Axios from 'axios';
 
 // Local components
 import SafeViewAndroid from '../../components/SafeViewAndroid';
 
 
 const History = ({navigation}) => {
+  const [name,setName]=useState("")
+  const [image,setImage]=useState("")
+
+  const submit =()=>{
+    const data={
+      name:"Nama Lengkap",
+      image:"gambar"
+    }
+    console.log(data)
+    Axios.post('http://10.0.2.2:3000/history',data)
+    .then(res=>{
+      console.log('res:',res)
+    })
+  }
   var barView=[];
   for (let i = 0; i < 3; i++) {
     var view =
@@ -37,8 +52,7 @@ const History = ({navigation}) => {
 
         <View style={styles.historycontainer}>
           <ScrollView>
-            {barView}
-            <Button title="Add History" color="black" />
+            <Button title="Add History" color="black" onPress={submit} />
           </ScrollView> 
         </View>
         <StatusBar style="auto" />
