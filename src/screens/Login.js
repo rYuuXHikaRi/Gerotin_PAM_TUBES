@@ -116,6 +116,6 @@ const Login = ({navigation}) => {
                     paddingVertical:30
                 }}>Don't have account? create a new account</Text>
             </View>
-        )
-            }
+
+        )}
 export default Login;
