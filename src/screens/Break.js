@@ -6,9 +6,10 @@ import { useRoute } from "@react-navigation/core";
 const Break = ({ navigation}) => {
   let timer = 0;
   const route = useRoute();
-  const [timeleft, setTimeLeft] = useState(route.params.startCountDown);
+  const startTimer = route.params.time
   const index = route.params.index;
   const excersisesData = route.params.excersises;
+  const [timeleft, setTimeLeft] = useState(startTimer);
 
   const StartTime = () => {
     setTimeout(() => {
@@ -88,7 +89,7 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 30,
     textAlign: "center",
-    marginTop: 25,
+    marginTop: 35,
   },
   SecondText: {
     color: "white",

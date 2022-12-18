@@ -19,7 +19,7 @@ export default [
           image:"https://i.pinimg.com/originals/b1/dd/77/b1dd77ce7b25ab2526175b2a7a4143e0.gif",
           name:"Barbel Deadlift",
           sets:10,
-          time:7,
+          time:10,
       },
       {
           id:"12",
@@ -77,7 +77,7 @@ export default [
         image:"https://i.pinimg.com/originals/18/27/be/1827be178c019b1dc6f8a8d8b4a7b0b8.gif",
         name:"MOUNTAIN CLIMBERS",
         sets:10,
-        time:7,
+        time:10,
       },
       {
         id:"92",

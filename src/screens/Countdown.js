@@ -11,59 +11,13 @@ const Countdown = ({ navigation }) => {
   const excersisesData = route.params.excersises;
   const startTimer = route.params.time
   let timer = 0;
+  const [timeleft , setTimeLeft] = useState(startTimer)
 
-  const [timeleft , setTimeLeft] = useState(startTimer);
-
-  function startCountDown() {
-    if (timeleft > 0) {
-      setTimeLeft(startTimer);
-      clearInterval(intervalId);
-      return (
-        navigation.navigate("Break", {
-          excersises: excersisesData,
-          index: index + 1,
-        })
-      )
-  
-    } else {
-      useEffect(() => {
-        const intervalId = setTimeout(() => { 
-          setTimeLeft(timeleft - 1);
-          console.log(timeleft);
-        }, 1000)
-      })
-      
-    }
-  }
-  /*
-  const StartTime = () => {
-    setTimeout(() => {
-        if (timeleft == 0){
-          navigation.navigate("Break", {
-            excersises: excersisesData,
-            image: excersisesData[index].image,
-            name: excersisesData[index].name,
-            set: excersisesData[index].sets,
-            time: excersisesData[index].time,
-            index: index,
-          })
-            clearTimeout(timer)
-        } else {
-          setTimeLeft(timeleft - 1)
-        }
-       
-    },1000)
-  }
-  useEffect(() => {
-      StartTime();
-        return () => clearTimeout(timer);
-  },)
-  */
   const nextExcersises = () => {
     if (index == 6) {
-      navigation.navigate("Break")
+      navigation.navigate("Finish")
     } else {
-        navigation.navigate("Countdown", {
+        navigation.navigate("Break", {
         excersises: excersisesData,
         image: excersisesData[index + 1].image,
         name: excersisesData[index + 1].name,
@@ -97,8 +51,7 @@ const Countdown = ({ navigation }) => {
           source={{uri:route.params.image}}
         />
         <Text style={StyleS.teks}>{route.params.name}</Text>
-        <Text style={StyleS.teks}>{route.params.set + " X"}</Text>
-        <Text style={StyleS.TimeText}>{startCountDown()}</Text>
+        <Text style={StyleS.teksSets}>{route.params.set + " X"}</Text>
         <Pressable style={StyleS.Bprev}
           onPress={prevExcersisesStyles}>
           <Text style={StyleS.prev}>
@@ -150,7 +103,7 @@ const StyleS = StyleSheet.create({
     backgroundColor: "#FF5151",
     borderBottomRightRadius: 35,
     borderBottomLeftRadius: 35,
-  },
+  },  
   teks: {
     marginLeft: "auto",
     marginRight: "auto",
@@ -159,6 +112,16 @@ const StyleS = StyleSheet.create({
     fontWeight: "bold",
     color: "#ffff",
   },
+  teksSets: {
+    marginLeft: "auto",
+    marginRight: "auto",
+    marginTop: 30,
+    marginBottom: 170,
+    fontSize: 30,
+    fontWeight: "bold",
+    color: "#ffff",
+  },
+
   CC: {
     alignContent: "center",
     alignItems: "center",
