@@ -19,9 +19,11 @@ import Preferensi from "./Preferensi";
 import ScrollViewHorizontal from "../../components/ScrollViewHorizontal";
 import ScrollViewHorizontal2 from "../../components/ScrollViewHorizontal2";
 import WorkOut from "../data/WorkOut";
+import { useRoute } from "@react-navigation/native";
 
 const Home = ({ navigation }) => {
   const WorkOutData = WorkOut;
+  const route =useRoute()
 
   return (
     <SafeAreaView style={SafeViewAndroid.AndroidSafeArea}>
@@ -124,7 +126,6 @@ const Home = ({ navigation }) => {
                   width: 87,
                   height: 80,
                   borderRadius: 15,
-
                   marginTop: 5,
                 }}
               />
