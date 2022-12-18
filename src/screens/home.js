@@ -2,7 +2,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, SafeAreaView, Image, ScrollView, Pressable } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import {useRoute} from "@react-navigation/core";
 import Icon from 'react-native-vector-icons/Ionicons';
 import Icon2 from 'react-native-vector-icons/MaterialIcons';
 import Icon3 from 'react-native-vector-icons/FontAwesome';
@@ -16,7 +15,7 @@ import { Component } from 'react/cjs/react.production.min';
 import { signOut } from 'firebase/auth';
 import {firebaseAuthentication} from '../config/firebase'
 import WorkOut from "../data/WorkOut";
-import { useRoute } from "@react-navigation/native";
+import { useRoute } from "@react-navigation/core";
 
 
 
@@ -157,7 +156,8 @@ console.log("from home: " + !!firebaseAuthentication.currentUser)
                         </ScrollView>    
                     </View>
                 </View>
-
+            </View>
+        </View>
         <View style={styles.contentBox}>
           <View
             style={{
@@ -211,7 +211,8 @@ console.log("from home: " + !!firebaseAuthentication.currentUser)
             </View>   
 
         </View> 
-        <StatusBar style="auto" />            
+        <StatusBar style="auto" />          
+        </View>  
     </SafeAreaView>
   )
 }
@@ -265,7 +266,7 @@ const styles = StyleSheet.create({
     contentBox: {
         backgroundColor: "#FF5151",
         width: "auto",
-        height: 590,
+        height: 400,
         borderTopLeftRadius: 50,
         borderTopRightRadius: 50,
 
