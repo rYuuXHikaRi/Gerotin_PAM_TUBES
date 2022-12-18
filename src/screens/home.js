@@ -16,6 +16,8 @@ import { Component } from 'react/cjs/react.production.min';
 import { signOut } from 'firebase/auth';
 import {firebaseAuthentication} from '../config/firebase'
 import WorkOut from "../data/WorkOut";
+import { useRoute } from "@react-navigation/native";
+
 
 
 const Home = ({navigation}) => {
@@ -119,7 +121,6 @@ console.log("from home: " + !!firebaseAuthentication.currentUser)
                                         width: 87,
                                         height: 80,
                                         borderRadius: 15,
-
                                         marginTop: 5,
                                     }}/>
                     </View>
@@ -156,6 +157,27 @@ console.log("from home: " + !!firebaseAuthentication.currentUser)
                         </ScrollView>    
                     </View>
                 </View>
+
+        <View style={styles.contentBox}>
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <View>
+              <Text style={styles.contentText}>Latihan Terakhir</Text>
+              <Image
+                source={require("../../assets/Home/latestExercise.jpg")}
+                style={{
+                  width: 87,
+                  height: 80,
+                  borderRadius: 15,
+                  marginTop: 5,
+                }}
+              />
+
             </View>
 
             <View style={styles.navigatorBox}>
