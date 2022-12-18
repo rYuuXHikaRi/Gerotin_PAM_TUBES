@@ -1,14 +1,26 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View,Image, Pressable } from 'react-native';
+import { StyleSheet, Text, View,Image, Pressable,Button } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView, ScrollView} from 'react-native';
 
 // Local components
 import SafeViewAndroid from '../../components/SafeViewAndroid';
+import { Value } from 'react-native-reanimated';
 
 const History = ({navigation}) => {
+  const [part,setPart]=useState("")
+  const [image,setImage]=useState("")
+
+  const data={
+    part:"Otot Dada",
+    image:"contoh gambar"
+  }
+
+  console.log("data")
+
   var barView=[];
+
   for (let i = 0; i < 1; i++) {
     var view =
     <View style={styles.historybox}>
@@ -26,7 +38,7 @@ const History = ({navigation}) => {
       <View style={styles.container}>
       
         <View style={styles.header}>
-          <Pressable onPress={() => navigation.navigate("Home")}>
+          <Pressable onPress={() => navigation.navigate("Home") }>
             <Ionicons name="arrow-back-circle" size={35} color="#FF5151" style={{position:'relative'}} />
           </Pressable>
           <View style={styles.titleBox}>
@@ -38,11 +50,11 @@ const History = ({navigation}) => {
           <ScrollView>
             {barView}
           </ScrollView> 
+          <Button onPress={() => navigation.navigate("Riwayat")} title="tambah"/>
+         
+
         </View>
-        <Pressable onPress={() => navigation.navigate("Riwayat")}>
-            <Icon2 name='history' size={32} style={{color: "#FF5151", marginLeft: 2}}/>
-            <Text style={styles.navigatorText}> Tambah Riwayat</Text>
-        </Pressable>
+
         <StatusBar style="auto" />
       </View>
     </SafeAreaView>

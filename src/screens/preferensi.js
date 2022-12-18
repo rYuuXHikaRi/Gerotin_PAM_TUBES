@@ -1,12 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React,{useState} from 'react';
 import { StyleSheet, Text, Pressable, View, SafeAreaView } from 'react-native';
 import { Switch} from 'react-native-paper' ;
 import Icon from 'react-native-vector-icons/Ionicons';
-
+import TimePicker from '../components/TimePicker';
+import ListReminder from '../components/ListReminder';
 import SafeViewAndroid from '../../components/SafeViewAndroid';
+import DateTimePicker from 'react-native-modal-datetime-picker';
+import { Provider } from 'react-redux';
+import configureStore from '../../store';
 
 const Preferensi = ({navigation}) => {
+    const store=configureStore()
   return (
     <SafeAreaView style={SafeViewAndroid.AndroidSafeArea}>
         <Pressable style={styles.title} onPress={() => navigation.navigate("Home")}>
@@ -15,18 +20,11 @@ const Preferensi = ({navigation}) => {
         </Pressable>
         
         <View style={styles.contentBox}>
-            <Text style={styles.contentText}>Hidupkan Pengingat</Text>
-            <View style={styles.toggleButton}>
-                <Switch/>
-            </View>
+            <Provider store={store}>
+                <ListReminder/>
+                <TimePicker/>
+            </Provider>
             
-            <Text style={styles.contentText}>Setel Pengingat</Text>
-            <Pressable style={styles.contentButtonOK} onPress={() => navigation.navigate("Home")}>
-                <Text style={styles.buttonText}>OK</Text>
-            </Pressable>
-            <Pressable style={styles.contentButtonNotOK} onPress={() => navigation.navigate("Home")}>
-                <Text style={styles.buttonText}>Batal</Text>
-            </Pressable>
         </View>
         <StatusBar style="auto" />
     </SafeAreaView>
@@ -97,5 +95,29 @@ const styles = StyleSheet.create({
     },
     toggleButton: {
         marginTop: -63,
+    },
+    time:{
+        color:'black',
+        fontSize:30,
+        fontWeight:'bold'
+    },
+    wrapper:{
+        display:'flex',
+        flexDirection:'row',
+        justifyContent:'space-between'
+    },
+    removeButton:{
+        height:50,
+        backgroundColor:'black',
+        borderRadius:10,
+        padding:10,
+        alignContent:'center'
+    },
+    addButton:{
+        height:50,
+        backgroundColor:'black',
+        borderRadius:10,
+        padding:10,
+        alignContent:'center'
     }
 })
