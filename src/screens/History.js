@@ -87,8 +87,6 @@ const History = ({navigation,nama,gambar}) => {
               </View>
           </View>
             })}
-
-           
           </ScrollView> 
         </View>
         <StatusBar style="auto" />
@@ -145,6 +143,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 50,
     width:390,
     height:"100%",
+
     paddingTop: 51,
     paddingLeft: 24,
     paddingRight: 24,

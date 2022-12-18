@@ -6,10 +6,8 @@ import { SafeAreaView, ScrollView} from 'react-native';
 import {useRoute} from "@react-navigation/core";
 import  Axios  from "axios";
 
-
 const Finish = ({navigation}) => {
 
-  
   const route= useRoute()
   const imageCover = route.params.imageCover;
   const excersisesName = route.params.excersisesName;
@@ -51,6 +49,7 @@ const Finish = ({navigation}) => {
       <Pressable style={styles.textbox} onPress={submit}>
         <Text style={{textAlign:'center', fontWeight:'bold', fontSize:25, color:'white'}}>Home</Text>
       </Pressable>
+
       <StatusBar style="auto"/>
     </View>
   );

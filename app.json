@@ -2,14 +2,14 @@
   "expo": {
     "name": "Gerotin",
     "slug": "Gerotin",
-    "version": "1.0.0",
+    "version": "0.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "dark",
     "splash": {
       "image": "assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "resizeMode": "cover",
+      "backgroundColor": "#404040"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -22,6 +22,14 @@
     },
     "web": {
       "favicon": "assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "eb9e59e7-8fc2-4506-8a7a-d0ed0600c3db"
+      }
+    },
+    "android": {
+      "package": "com.AkJgMw.GEROtin"
     }
   }
 }
