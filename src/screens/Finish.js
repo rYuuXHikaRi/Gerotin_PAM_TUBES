@@ -16,6 +16,7 @@ const Finish = ({navigation}) => {
   const photoURL = route.params.photoURL;
 
   
+
   var date = new Date().getDate();
   var month = new Date().getMonth();
   var year = new Date().getFullYear();

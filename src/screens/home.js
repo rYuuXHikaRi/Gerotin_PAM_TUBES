@@ -2,10 +2,10 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, SafeAreaView, Image, ScrollView, Pressable } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import {useRoute} from "@react-navigation/core";
 import Icon from 'react-native-vector-icons/Ionicons';
 import Icon2 from 'react-native-vector-icons/MaterialIcons';
 import Icon3 from 'react-native-vector-icons/FontAwesome';
+import Axios from 'axios';
 
 // Local components
 import SafeViewAndroid from '../../components/SafeViewAndroid';
@@ -16,8 +16,7 @@ import { Component } from 'react/cjs/react.production.min';
 import { signOut } from 'firebase/auth';
 import {firebaseAuthentication} from '../config/firebase'
 import WorkOut from "../data/WorkOut";
-
-
+import { useRoute } from "@react-navigation/core";
 
 const Home = ({navigation}) => {
     const route = useRoute();
@@ -34,6 +33,32 @@ const Home = ({navigation}) => {
             }, [])
         }).catch((err) => console.log(err));
     }
+
+    const [data,setData]=useState()
+    useEffect(()=>{
+        getData()
+
+    },[])
+    const getData = async()=>{
+        try {
+        const resp=await Axios.get('https://newsapi.org/v2/top-headlines',{
+            params:{
+            country:'us',
+            category:'sports',
+            apiKey:'c7c86c5b5852423b8d502dbf72746884'
+            }
+        });
+        setData(resp.data.articles)
+        
+        } catch (error) {
+        alert(error.message)
+        
+        }
+    };
+    useEffect(()=>{
+        getData()
+
+  },[])
 
 console.log("from home: " + !!firebaseAuthentication.currentUser)
   return (
@@ -127,9 +152,10 @@ console.log("from home: " + !!firebaseAuthentication.currentUser)
                     <View style={{width: 250, height:100, marginLeft: 24,}}>
                         <Text style={styles.contentText}>Artikel Yang Cocok Untuk Kamu</Text>
                         <ScrollView horizontal={true} style={{marginLeft: -11}}>
-                            <ScrollViewHorizontal action={() => navigation.navigate("KontenArtikel")} imageUri={require("../../assets/Home/latestExercise.jpg")}/>
-                            <ScrollViewHorizontal action={() => navigation.navigate("KontenArtikel")} imageUri={require("../../assets/Home/latestExercise.jpg")}/>
-                            <ScrollViewHorizontal action={() => navigation.navigate("KontenArtikel")} imageUri={require("../../assets/Home/latestExercise.jpg")}/>
+                        {data &&data.map((item,i)=>{
+                            <ScrollViewHorizontal action={() => navigation.navigate("KontenArtikel")} imageUri={{uri:item.urlToImage}}/>
+                           
+                        })}
                         </ScrollView>
                     </View>
                 </View>
@@ -244,7 +270,7 @@ const styles = StyleSheet.create({
     contentBox: {
         backgroundColor: "#FF5151",
         width: "auto",
-        height: 590,
+        height: 400,
         borderTopLeftRadius: 50,
         borderTopRightRadius: 50,
 
