@@ -60,7 +60,7 @@ const TimePicker=(props)=>{
         hideDateTimePicker();
     }
     return(
-        <View>
+        <View style={styles.main}>
             <View style={styles.wrapper}>
                 <View>
                     <Text style={styles.time}>{value}</Text>
@@ -71,8 +71,14 @@ const TimePicker=(props)=>{
                     <Text style={{fontSize:25,color:'white',fontWeight:'bold'}}>Hapus</Text>
 
                 </Pressable>
+
             </View>
-            <Button style={styles.addButton} title="+ Tambah Pengingat" color="black" onPress={showDateTimePicker}/>
+            <Pressable style={styles.removeButton}
+                        onPress={showDateTimePicker}>
+                    <Text style={{fontSize:25,color:'white',fontWeight:'bold'}}>Atur</Text>
+
+                </Pressable>
+            
  
             <DateTimePicker
                 isVisible={isDateTimePickerVisible}
@@ -117,7 +123,8 @@ const styles = StyleSheet.create({
     wrapper:{
         display:'flex',
         flexDirection:'row',
-        justifyContent:'space-between'
+        justifyContent:'space-between',
+        marginBottom:50
     },
     removeButton:{
         height:50,
@@ -132,5 +139,10 @@ const styles = StyleSheet.create({
         borderRadius:10,
         padding:10,
         alignContent:'center'
+    }
+    ,
+    main:{
+        marginBottom:500
+
     }
   })
