@@ -47,7 +47,7 @@ const Article = ({navigation}) => {
         <ImageBackground source={require('../../assets/logo2.jpg') } resizeMode="cover" style={{width: '100%', height: '100%',}}>
           <View style={styles.header}>
               <View>
-                <Pressable onPress={() => navigation.navigate("Home")}>
+                <Pressable onPress={() => navigation.goBack()}>
                   <Ionicons name="arrow-back-circle" size={40} color="#FF5151" />
                 </Pressable>
               </View>
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#404040",
   },
   header :{
-    backgroundColor: "black",
+    backgroundColor: "#404040",
     flexDirection: "row",
     alignContent: "center",
     justifyContent: "flex-start",

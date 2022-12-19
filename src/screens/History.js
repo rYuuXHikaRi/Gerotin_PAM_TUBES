@@ -55,7 +55,7 @@ const History = ({navigation,nama,gambar}) => {
       <View style={styles.container}>
       
         <View style={styles.header}>
-          <Pressable onPress={() => navigation.navigate("Home")}>
+          <Pressable onPress={() => navigation.goBack()}>
             <Ionicons name="arrow-back-circle" size={35} color="#FF5151" style={{position:'relative'}} />
           </Pressable>
           <View style={styles.titleBox}>

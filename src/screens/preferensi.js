@@ -9,7 +9,7 @@ import SafeViewAndroid from '../../components/SafeViewAndroid';
 const Preferensi = ({navigation}) => {
   return (
     <SafeAreaView style={SafeViewAndroid.AndroidSafeArea}>
-        <Pressable style={styles.title} onPress={() => navigation.navigate("Home")}>
+        <Pressable style={styles.title} onPress={() => navigation.goBack()}>
             <Icon name="arrow-back-circle" size={40} style={{color: "#FF5151", marginLeft: 24, marginTop: 24,}}/>
             <Text style={styles.textTitle}>Preferensi</Text>
         </Pressable>

@@ -184,7 +184,7 @@ console.log("from home: " + !!firebaseAuthentication.currentUser)
                     </Pressable>
 
                     <Pressable onPress={signOutHandler}>
-                
+                        <Icon name='exit' size={32} style={{color: "#FF5151", marginLeft: 6}}/>
                         <Text style={styles.navigatorText}>Sign Out</Text>
                     </Pressable>
                 </View>
