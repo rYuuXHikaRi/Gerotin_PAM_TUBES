@@ -13,6 +13,7 @@ const Finish = ({navigation}) => {
   const excersisesName = route.params.excersisesName;
 
   
+
   var date = new Date().getDate();
   var month = new Date().getMonth();
   var year = new Date().getFullYear();

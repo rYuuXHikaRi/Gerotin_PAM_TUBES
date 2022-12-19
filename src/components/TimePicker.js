@@ -2,41 +2,33 @@ import React,{useState,Component} from 'react';
 import {Text,View,Image,TextInput, Alert,StyleSheet,Pressable} from 'react-native';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import {connect} from 'react-redux';
-import {addAlarm} from '../src/alarm/actions/alarm'
+import {addAlarm} from '../../actions/alarm'
  
-class TimePicker extends Component{
-    constructor(props) {
-        super(props);
-        this.state = {
-          isDateTimePickerVisible: false,
-        };
-      }
-    makeid=()=>{
+const TimePicker=(props)=>{
+
+    const [isDateTimePickerVisible,setIsDateTimePickerVisible]=useState(false)
+    const makeid = () => {
         var length = 5;
-        var result = "";
-        var characters ="0123456789";
-        var charactersLength=characters.length;
-        
+        var result = '';
+        var characters = '0123456789';
+        var charactersLength = characters.length;
         for (var i = 0; i < length; i++) {
-            result+=characters.charAt(Math.floor(Math.random()* charactersLength));
-            
+          result += characters.charAt(Math.floor(Math.random() * charactersLength));
         }
         return result;
-    }
-    showDateTimePicker = () => {
-        this.setState({ isDateTimePickerVisible: true });
+      };
+    const showDateTimePicker = () => {
+        setIsDateTimePickerVisible(true);
       };
     
-    hideDateTimePicker = () => {
-        this.setState({ isDateTimePickerVisible: false });
+    const hideDateTimePicker = () => {
+        setIsDateTimePickerVisible(false);
       };
     
-    handleDatePicker = ({datetime}) =>{
-        
-
+    const handleDatePicker = (datetime) =>{
         
         const alarmNotifData = {
-          id: this.makeid(), // Required
+          id: makeid(), // Required
           title: 'Alarm Ringing', // Required
           message: 'My Notification Message', // Required
           channel: 'alarm-channel', // Required. Same id as specified in MainApplication's onCreate method
@@ -51,36 +43,37 @@ class TimePicker extends Component{
           color: 'red',
           schedule_once: true, // Works with ReactNativeAN.scheduleAlarm so alarm fires once
           tag: 'some_tag',
+          fire_date:Date.now(),
            // Date for firing alarm, Required for ReactNativeAN.scheduleAlarm.
     
           // You can add any additional data that is important for the notification
           // It will be added to the PendingIntent along with the rest of the bundle.
           // e.g.
-          data: { value: "20:00" },
+          data: { value: datetime},
         };
-        console.log(alarmNotifData)
-        this.props.add(alarmNotifData);
-        this.hideDateTimePicker();
+        console.log(alarmNotifData);
+        props.add(alarmNotifData);
+        console.log(props)
+        hideDateTimePicker();
     }
-    render(){
     return(
         <View>
             <Pressable style={styles.addButton}
-                    onPress={this.showDateTimePicker}>
+                    onPress={showDateTimePicker}>
                 <Text style={{fontSize:25,color:'white',fontWeight:'bold'}}>+ Tambah Pengingat</Text>
             </Pressable>
 
             <DateTimePicker
-                isVisible={this.state.isDateTimePickerVisible}
-                onConfirm={this.handleDatePicker}
-                onCancel={this.hideDateTimePicker}
+                isVisible={isDateTimePickerVisible}
+                onConfirm={handleDatePicker}
+                onCancel={hideDateTimePicker}
                 mode="datetime"
                 display='default'
             />
         </View>
     );
                 }
-}
+
 
 const mapStateToProps=state=>{
     return{};

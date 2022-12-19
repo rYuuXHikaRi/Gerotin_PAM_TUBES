@@ -2,15 +2,17 @@ import { StatusBar } from 'expo-status-bar';
 import React,{useState} from 'react';
 import { StyleSheet, Text, Pressable, View, SafeAreaView } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import TimePicker from '../../components/TimePicker';
-import ListReminder from '../../components/Reminder';
+import TimePicker from '../components/TimePicker';
+import Reminder from '../components/Reminder';
 import SafeViewAndroid from '../../components/SafeViewAndroid';
 import { Provider } from 'react-redux';
-import configureStore from '../alarm/store/index'
+import configureStore from '../../store/index'
+import { AppRegistry } from 'react-native-web';
 
 const Preferensi = ({navigation}) => {
     const store=configureStore()
   return (
+    
     <SafeAreaView style={SafeViewAndroid.AndroidSafeArea}>
         <Pressable style={styles.title} onPress={() => navigation.navigate("Home")}>
             <Icon name="arrow-back-circle" size={40} style={{color: "#FF5151", marginLeft: 24, marginTop: 24,}}/>
@@ -18,8 +20,8 @@ const Preferensi = ({navigation}) => {
         </Pressable>
         
         <View style={styles.contentBox}>
-            <Provider store={store}>
-                <ListReminder/>
+            <Provider store={store} >
+                <Reminder />
                 <TimePicker/>
             </Provider>
             
@@ -28,7 +30,6 @@ const Preferensi = ({navigation}) => {
     </SafeAreaView>
   )
 }
-
 export default Preferensi
 
 const styles = StyleSheet.create({

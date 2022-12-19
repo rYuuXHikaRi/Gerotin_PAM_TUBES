@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Button, StyleSheet,FlatList, View,Text,Pressable } from 'react-native';
 import { connect } from 'react-redux';
-import { deleteAlarm } from '../src/alarm/actions/alarm';
-class Reminder extends Component{
-    keyExtractor=(item,index)=>index.toString();
-    renderItem=({item})=>{
+import { deleteAlarm } from '../../actions/alarm';
+const Reminder=(props)=>{
+    const keyExtractor=(item,index)=>index.toString();
+    const renderItem=({item})=>{
         return(
             <View style={styles.wrapper}>
             <View>
@@ -12,7 +12,7 @@ class Reminder extends Component{
             </View>
             <Pressable style={styles.removeButton}
                     onPress={()=>{
-                        this.props.delete(item.value);
+                        props.delete(item.value);
                     }}>
                 <Text style={{fontSize:25,color:'white',fontWeight:'bold'}}>Hapus</Text>
 
@@ -20,18 +20,20 @@ class Reminder extends Component{
         </View>
         )
     }
-    render(){
+
     return(
         <FlatList
-            keyExtractor={this.keyExtractor}
-            data={this.props.alarms}
-            renderItem={this.renderItem}
+            keyExtractor={keyExtractor}
+            data={props.alarms}
+            renderItem={renderItem}
+
+        
         />
 
 
     );
     }
-}
+
 
 const mapStateToProps=state=>{
     return{
