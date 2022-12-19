@@ -1,11 +1,13 @@
 import React,{useState,Component} from 'react';
-import {Text,View,Image,TextInput, Alert,StyleSheet,Pressable} from 'react-native';
+import {Text,View,Image,TextInput, Alert,StyleSheet,Pressable,Button} from 'react-native';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import {connect} from 'react-redux';
 import {addAlarm} from '../../actions/alarm'
  
-const TimePicker=(props)=>{
 
+
+const TimePicker=(props)=>{
+    const[value,setValue]=useState("00:00")
     const [isDateTimePickerVisible,setIsDateTimePickerVisible]=useState(false)
     const makeid = () => {
         var length = 5;
@@ -25,7 +27,7 @@ const TimePicker=(props)=>{
         setIsDateTimePickerVisible(false);
       };
     
-    const handleDatePicker = (datetime) =>{
+    const handleDatePicker = (time) =>{
         
         const alarmNotifData = {
           id: makeid(), // Required
@@ -49,8 +51,9 @@ const TimePicker=(props)=>{
           // You can add any additional data that is important for the notification
           // It will be added to the PendingIntent along with the rest of the bundle.
           // e.g.
-          data: { value: datetime},
+          data: { value: time},
         };
+        setValue(time.toString())
         console.log(alarmNotifData);
         props.add(alarmNotifData);
         console.log(props)
@@ -58,17 +61,26 @@ const TimePicker=(props)=>{
     }
     return(
         <View>
-            <Pressable style={styles.addButton}
-                    onPress={showDateTimePicker}>
-                <Text style={{fontSize:25,color:'white',fontWeight:'bold'}}>+ Tambah Pengingat</Text>
-            </Pressable>
+            <View style={styles.wrapper}>
+                <View>
+                    <Text style={styles.time}>{value}</Text>
+                </View>
+                <Pressable style={styles.removeButton}
+                        onPress={()=>{
+                        }}>
+                    <Text style={{fontSize:25,color:'white',fontWeight:'bold'}}>Hapus</Text>
 
+                </Pressable>
+            </View>
+            <Button style={styles.addButton} title="+ Tambah Pengingat" color="black" onPress={showDateTimePicker}/>
+ 
             <DateTimePicker
                 isVisible={isDateTimePickerVisible}
                 onConfirm={handleDatePicker}
                 onCancel={hideDateTimePicker}
-                mode="datetime"
+                mode="time"
                 display='default'
+      
             />
         </View>
     );

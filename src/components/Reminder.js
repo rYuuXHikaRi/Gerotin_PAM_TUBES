@@ -7,17 +7,17 @@ const Reminder=(props)=>{
     const renderItem=({item})=>{
         return(
             <View style={styles.wrapper}>
-            <View>
-                <Text style={styles.time}>{item.time.toString()}</Text>
-            </View>
-            <Pressable style={styles.removeButton}
-                    onPress={()=>{
-                        props.delete(item.value);
-                    }}>
-                <Text style={{fontSize:25,color:'white',fontWeight:'bold'}}>Hapus</Text>
+                <View>
+                    <Text style={styles.time}>{item.time.toString()}</Text>
+                </View>
+                <Pressable style={styles.removeButton}
+                        onPress={()=>{
+                            props.delete(item.value);
+                        }}>
+                    <Text style={{fontSize:25,color:'white',fontWeight:'bold'}}>Hapus</Text>
 
-            </Pressable>
-        </View>
+                </Pressable>
+            </View>
         )
     }
 
