@@ -4,8 +4,6 @@ import Icon from '@expo/vector-icons/AntDesign';
 import { signInWithEmailAndPassword} from 'firebase/auth';
 import { firebaseAuthentication } from '../config/firebase'
 
-
-
 const Login = ({navigation}) => {
     
     const [email, setEmail] = React.useState('');

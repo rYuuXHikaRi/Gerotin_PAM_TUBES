@@ -11,6 +11,9 @@ const Finish = ({navigation}) => {
   const route= useRoute()
   const imageCover = route.params.imageCover;
   const excersisesName = route.params.excersisesName;
+  const displayName = route.params.displayName;
+  const email = route.params.email;
+  const photoURL = route.params.photoURL;
 
   
 
@@ -27,7 +30,7 @@ const Finish = ({navigation}) => {
       time:timeExercises
     }
     console.log(data)
-    Axios.post('http://10.0.2.2:3000/history',data)
+    Axios.post('http://192.168.1.8:3000/history',data)
     .then(res=>{
       console.log('res:',res)
   
@@ -35,11 +38,11 @@ const Finish = ({navigation}) => {
     navigation.navigate("Home",{
       imageCover: imageCover,
       excersisesName: excersisesName,
+      displayName: displayName,
+      email: email,
+      photoURL: photoURL
     })
   }
-
-
-
   return (
     <View style={styles.container}>
       <View style={styles.header}>

@@ -12,57 +12,67 @@ import { Ionicons } from "@expo/vector-icons";
 import { SafeAreaView, ScrollView } from "react-native";
 import { useRoute } from "@react-navigation/native";
 
+//local component
+import SafeViewAndroid from '../../components/SafeViewAndroid';
+
 const Gerakan = ({ navigation }) => {
   const route = useRoute();
   const excersisesData = route.params.excersises;
   const imageCover = route.params.image;
   const excersisesName = route.params.name;
+  const displayName = route.params.displayName;
+  const email = route.params.email;
+  const photoURL = route.params.photoURL;
 
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Image
-          source={{ uri: imageCover }}
-          style={{ width: 400, height: 165, position: "absolute" }}
-        />
-        <Ionicons
-          onPress={() => navigation.goBack()}
-          name="arrow-back-circle"
-          size={35}
-          color="#FF5151"
-        />
-      </View>
-      <View style={styles.textBox}>
-        <Text>{excersisesName}</Text>
-      </View>
-      <View style={styles.barContainer}>
-        <ScrollView>
-          {excersisesData.map((item, key) => {
-            return (
-              <View style={styles.exercisesImg}>
-                <Image
-                  source={{ uri: item.image }}
-                  style={styles.exercisesImgContent}
-                />
-                <View style={{ marginLeft: 28 }}>
-                  <Text style={styles.exercisesImgText}>{item.name}</Text>
-                  <Text style={styles.exercisesImgText}>
-                    {item.sets + " X"}
-                  </Text>
+    <SafeAreaView style={SafeViewAndroid.AndroidSafeArea}>
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <Image
+            source={{ uri: imageCover }}
+            style={{ width: 400, height: 165, position: "absolute" }}
+          />
+          <Ionicons
+            onPress={() => navigation.goBack()}
+            name="arrow-back-circle"
+            size={35}
+            color="#FF5151"
+          />
+        </View>
+        <View style={styles.textBox}>
+          <Text>{excersisesName}</Text>
+        </View>
+        <View style={styles.barContainer}>
+          <ScrollView>
+            {excersisesData.map((item, key) => {
+              return (
+                <View style={styles.exercisesImg} key={item.id}>
+                  <Image
+                    source={{ uri: item.image }}
+                    style={styles.exercisesImgContent}
+                  />
+                  <View style={{ marginLeft: 28 }}>
+                    <Text style={styles.exercisesImgText}>{item.name}</Text>
+                    <Text style={styles.exercisesImgText}>
+                      {item.sets + " X"}
+                    </Text>
+                  </View>
                 </View>
-              </View>
-            );
-          })}
-        </ScrollView>
-      </View>
-        <Pressable 
+              );
+            })}
+          </ScrollView>
+        </View>
+        <Pressable
           style={styles.startBar}
           onPress={() => navigation.navigate("Countdown", {
+            displayName: displayName,
+            email: email,
+            photoURL: photoURL,
             imageCover: imageCover,
             excersisesName: excersisesName,
             excersises: excersisesData,
-            image:excersisesData[0].image, 
+            image: excersisesData[0].image,
             name: excersisesData[0].name,
             set: excersisesData[0].sets,
             time: excersisesData[0].time,
@@ -71,8 +81,10 @@ const Gerakan = ({ navigation }) => {
         >
           <Text>Start</Text>
         </Pressable>
-      <StatusBar style="auto" />
-    </View>
+        <StatusBar style="auto" />
+      </View>
+
+    </SafeAreaView>
   );
 };
 export default Gerakan;
@@ -80,7 +92,7 @@ export default Gerakan;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "black",
+    backgroundColor: "#404040",
     alignItems: "center",
     justifyContent: "center",
   },

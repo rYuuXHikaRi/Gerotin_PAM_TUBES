@@ -18,8 +18,6 @@ import {firebaseAuthentication} from '../config/firebase'
 import WorkOut from "../data/WorkOut";
 import { useRoute } from "@react-navigation/core";
 
-
-
 const Home = ({navigation}) => {
     const route = useRoute();
     const displayName = route.params.displayName;
@@ -169,12 +167,15 @@ console.log("from home: " + !!firebaseAuthentication.currentUser)
                             {WorkOutData.map((item, key) => {
                                 return (
                                           <ScrollViewHorizontal2
-                                              key={key}
+                                              key={item.id}
                                               action={() => navigation.navigate("Gerakan", {
                                                               image: item.image,
                                                               excersises: item.excersises,
                                                               id: item.id,
                                                               name: item.name,
+                                                              displayName: displayName,
+                                                              email: email,
+                                                              photoURL: photoURL
                                                             })
                                               }   
                                               imageUri={{ uri: item.image }}
@@ -185,29 +186,6 @@ console.log("from home: " + !!firebaseAuthentication.currentUser)
                     </View>
                 </View>
             </View>
-        </View>
-        <View style={styles.contentBox}>
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <View>
-              <Text style={styles.contentText}>Latihan Terakhir</Text>
-              <Image
-                source={require("../../assets/Home/latestExercise.jpg")}
-                style={{
-                  width: 87,
-                  height: 80,
-                  borderRadius: 15,
-                  marginTop: 5,
-                }}
-              />
-
-            </View>
-
             <View style={styles.navigatorBox}>
                 <View style={{
                                 flexDirection: "row",
@@ -232,15 +210,13 @@ console.log("from home: " + !!firebaseAuthentication.currentUser)
                     </Pressable>
 
                     <Pressable onPress={signOutHandler}>
-                
+                        <Icon name='exit' size={32} style={{color: "#FF5151", marginLeft: 6}}/>
                         <Text style={styles.navigatorText}>Sign Out</Text>
                     </Pressable>
                 </View>
-            </View>   
-
-        </View> 
-        <StatusBar style="auto" />          
-        </View>  
+            </View>               
+        </View>           
+        <StatusBar style="auto" />            
     </SafeAreaView>
   )
 }
