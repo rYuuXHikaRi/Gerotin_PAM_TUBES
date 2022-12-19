@@ -7,12 +7,14 @@ import Home from './src/screens/Home';
 import Preferensi from './src/screens/Preferensi';
 import Profile from './src/screens/Profile';
 import Gerakan from './src/screens/Gerakan';
+
 import Countdown from './src/screens/Countdown';
 import Article from './src/screens/Article';
 import History from './src/screens/History';
 import ArticleContent from './src/screens/Artikel_Content';
 import Finish from "./src/screens/Finish";
 import Break from './src/screens/Break';
+
 
 const Stack = createStackNavigator();
 

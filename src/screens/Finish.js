@@ -1,3 +1,4 @@
+
 import React from "react";
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View,Image, Pressable } from 'react-native';
@@ -51,12 +52,15 @@ const Finish = ({navigation}) => {
       <Pressable style={styles.textbox} onPress={submit}>
         <Text style={{textAlign:'center', fontWeight:'bold', fontSize:25, color:'white'}}>Home</Text>
       </Pressable>
+
       <StatusBar style="auto"/>
     </View>
   );
 }
 
+
 export default Finish;
+
 
 const styles = StyleSheet.create({
   container: {
