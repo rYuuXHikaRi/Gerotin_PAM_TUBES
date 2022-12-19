@@ -33,7 +33,10 @@ const Finish = ({navigation}) => {
       console.log('res:',res)
   
     })
-    navigation.navigate("Home")
+    navigation.navigate("Home",{
+      imageCover: imageCover,
+      excersisesName: excersisesName,
+    })
   }
 
 
