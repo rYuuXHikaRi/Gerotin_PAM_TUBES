@@ -141,7 +141,7 @@ console.log("from home: " + !!firebaseAuthentication.currentUser)
                             {WorkOutData.map((item, key) => {
                                 return (
                                           <ScrollViewHorizontal2
-                                              key={key}
+                                              key={item.id}
                                               action={() => navigation.navigate("Gerakan", {
                                                               image: item.image,
                                                               excersises: item.excersises,

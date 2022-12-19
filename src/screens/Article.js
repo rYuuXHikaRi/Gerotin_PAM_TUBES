@@ -67,6 +67,7 @@ const Article = ({navigation}) => {
                 return <>
                 <TouchableOpacity
                   onPress={()=>navigation.navigate("KontenArtikel",{data:item})}
+                  key={item.title}
                   >
                     <View style={styles.historybox}>
                     <Image source={{uri:item.urlToImage}}  style={{ width: 100, height: 100,margin:10,marginRight:40,justifyContent:'center' }}/>

@@ -43,7 +43,7 @@ const Gerakan = ({ navigation }) => {
         <ScrollView>
           {excersisesData.map((item, key) => {
             return (
-              <View style={styles.exercisesImg}>
+              <View style={styles.exercisesImg} key={item.id}>
                 <Image
                   source={{ uri: item.image }}
                   style={styles.exercisesImgContent}
