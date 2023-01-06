@@ -153,7 +153,7 @@ console.log("from home: " + !!firebaseAuthentication.currentUser)
                         <Text style={styles.contentText}>Artikel Yang Cocok Untuk Kamu</Text>
                         <ScrollView horizontal={true} style={{marginLeft: -11}}>
                         {data &&data.map((item,i)=>{
-                            <ScrollViewHorizontal action={() => navigation.navigate("KontenArtikel")} imageUri={{uri:item.urlToImage}}/>
+                            <ScrollViewHorizontal action={() => navigation.navigate("KontenArtikel")} imageUri={require('../../assets/Home/latestExercise.jpg')}/>
                            
                         })}
                         </ScrollView>
@@ -270,7 +270,7 @@ const styles = StyleSheet.create({
     contentBox: {
         backgroundColor: "#FF5151",
         width: "auto",
-        height: 400,
+        height: 700,
         borderTopLeftRadius: 50,
         borderTopRightRadius: 50,
 
@@ -292,7 +292,7 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
 
-        marginTop: -106,
+        marginTop: -120,
         paddingTop: 13,
         paddingLeft: 37,
         paddingBottom: 11,
